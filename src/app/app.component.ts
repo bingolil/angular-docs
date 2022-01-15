@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { LANG } from './constant';
+import { LoadingService } from './services/base/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +8,6 @@ import { LANG } from './constant';
 })
 export class AppComponent {
 
-  title = 'angular-docs';
-
-  constructor(private translateService:TranslateService){
-    this.translateService.use(LANG.zhCn);
-  }
+  constructor(public loadingService: LoadingService) { }
 
 }

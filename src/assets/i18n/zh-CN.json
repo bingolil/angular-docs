@@ -1,4 +1,9 @@
 {
-    "welcome":"欢迎使用本应用",
-    "getName":"你好，我是{{name}}"
+  "welcome": "欢迎使用本应用",
+  "getName": "你好，我是{{name}}",
+  "pages": {
+    "table": {
+      "total": "共 {{total}} 条"
+    }
+  }
 }

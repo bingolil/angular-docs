@@ -1,4 +1,9 @@
 {
     "welcome":"welcome to this app",
-    "getName":"hello I am {{name}}"
+    "getName":"hello I am {{name}}",
+    "pages": {
+        "table": {
+          "total": "Total {{total}} item"
+        }
+      }
 }

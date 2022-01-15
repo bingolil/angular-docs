@@ -1,2 +1,3 @@
+<docs-loading-ui [hidden]="(loadingService.loading$ | async)===false"></docs-loading-ui>
 <router-outlet></router-outlet>
 <span>{{ 'welcome' | translate}}</span>

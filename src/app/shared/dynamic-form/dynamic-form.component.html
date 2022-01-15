@@ -1,0 +1,89 @@
+<form (ngSubmit)="onSubmit()" nz-form [formGroup]="dynamicForm" [nzLayout]="layout">
+    <ng-container *ngFor="let controlItem of formControls">
+        <nz-form-item [ngSwitch]="controlItem.type" [ngClass]="{'inline-item':layout==='inline'}">
+            <nz-form-label [nzSpan]="isHorizontal ? labelSpan :null" [nzRequired]="showStarMap.get(controlItem.key)">
+                {{controlItem.label}}
+            </nz-form-label>
+            <nz-form-control [nzSpan]="isHorizontal ? controlSpan :null" [nzErrorTip]="controlErrorTpl">
+                <!-- 单行文本输入框 -->
+                <ng-container *ngSwitchCase="'inputText'">
+                    <input nz-input [formControlName]="controlItem.key" [readonly]="controlItem.readonly"
+                        [placeholder]="controlItem.placeholder" />
+                </ng-container>
+                <!-- 密码输入框 -->
+                <ng-container *ngSwitchCase="'password'">
+                    <input nz-input type="password" [formControlName]="controlItem.key"
+                        [readonly]="controlItem.readonly" [placeholder]="controlItem.placeholder" />
+                </ng-container>
+                <!-- 数字输入框 -->
+                <ng-container *ngSwitchCase="'inputNumber'">
+                    <nz-input-number [formControlName]="controlItem.key" [nzMin]="controlItem.min"
+                        [nzMax]="controlItem.max" [nzStep]="controlItem.step" [nzPlaceHolder]="controlItem.placeholder">
+                    </nz-input-number>
+                </ng-container>
+                <!-- 多行文本输入框 -->
+                <ng-container *ngSwitchCase="'textArea'">
+                    <textarea nz-input [formControlName]="controlItem.key" [readonly]="controlItem.readonly"
+                        [placeholder]="controlItem.placeholder" [nzAutosize]="controlItem.rowsConfig"></textarea>
+                </ng-container>
+                <!-- 单选框 -->
+                <ng-container *ngSwitchCase="'radioGroup'">
+                    <nz-radio-group [formControlName]="controlItem.key">
+                        <label nz-radio *ngFor="let kk of controlItem.options" [nzDisabled]="!!kk.disabled"
+                            [nzValue]="kk.value">{{kk.label}}</label>
+                    </nz-radio-group>
+                </ng-container>
+                <!-- 下拉框 -->
+                <ng-container *ngSwitchCase="'selectDropdown'">
+                    <nz-select [formControlName]="controlItem.key" [nzMode]="controlItem.selectMode"
+                        [nzPlaceHolder]="controlItem.placeholder" [nzAllowClear]="controlItem.allowClear">
+                        <nz-option *ngFor="let option of controlItem.options" [nzLabel]="option.label"
+                            [nzDisabled]="option.disabled" [nzValue]="option.value"></nz-option>
+                    </nz-select>
+                </ng-container>
+                <!-- 复选框组 -->
+                <ng-container *ngSwitchCase="'checkboxGroup'">
+                    <docs-checkbox-group [formControlName]="controlItem.key" [options]="controlItem.options">
+                    </docs-checkbox-group>
+                </ng-container>
+                <!-- 日期范围选择框 -->
+                <ng-container *ngSwitchCase="'dateRange'">
+                    <nz-range-picker [formControlName]="controlItem.key" [nzFormat]="controlItem.format"
+                        [nzInputReadOnly]="controlItem.readonly" [nzShowTime]="controlItem.showTime"
+                        [nzShowNow]="controlItem.showNow" [nzRanges]="controlItem.ranges"
+                        [nzDisabledDate]="controlItem.disabledDateFn" [nzDisabledTime]="controlItem.disabledTimeFn">
+                    </nz-range-picker>
+                </ng-container>
+                <!-- 日期选择框 -->
+                <ng-container *ngSwitchCase="'date'">
+                    <nz-date-picker [formControlName]="controlItem.key" [nzFormat]="controlItem.format"
+                        [nzInputReadOnly]="controlItem.readonly" [nzPlaceHolder]="controlItem.placeholder"
+                        [nzShowTime]="controlItem.showTime" [nzShowToday]="controlItem.showToday"
+                        [nzShowNow]="controlItem.showNow" [nzDisabledDate]="controlItem.disabledDateFn"
+                        [nzDisabledTime]="controlItem.disabledTimeFn">
+                    </nz-date-picker>
+                </ng-container>
+                <!-- 时间选择框 -->
+                <ng-container *ngSwitchCase="'time'">
+                    <nz-time-picker [formControlName]="controlItem.key" [nzFormat]="controlItem.format"
+                        [nzHourStep]="controlItem.hourStep" [nzMinuteStep]="controlItem.minuteStep"
+                        [nzSecondStep]="controlItem.secondStep" [nzPlaceHolder]="controlItem.placeholder"
+                        [nzDisabledHours]="controlItem.disabledHours" [nzDisabledMinutes]="controlItem.disabledMinutes"
+                        [nzDisabledSeconds]="controlItem.disabledSeconds">
+                    </nz-time-picker>
+                </ng-container>
+                <!-- 表单控件项 校验错误模板 -->
+                <ng-template #controlErrorTpl let-control>
+                    <ng-container *ngFor="let validateItem of controlItem.validatorList">
+                        <ng-container *ngIf="control.hasError(validateItem.type)">{{validateItem.msg}}</ng-container>
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+    </ng-container>
+    <nz-form-item>
+        <nz-form-control>
+            <button nz-button nzType="primary">Submit</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

@@ -1,0 +1,12 @@
+<div class="table-wrap" id="table-wrap" [ngStyle]="{'max-height': !!maxHeight ? maxHeight+'px' : null}">
+    <table #dataTable cdkObserveContent (cdkObserveContent)="onContentChange()" cellspacing="0">
+        <ng-content select="thead"></ng-content>
+        <ng-content select="tbody"></ng-content>
+    </table>
+</div>
+<nz-pagination *ngIf="showPagination" [nzPageIndex]="pageNum" [nzTotal]="total" [nzPageSize]="pageSize"
+    [nzPageSizeOptions]="pageSizeOptions" [nzShowSizeChanger]="showPageSizeChange" [nzShowTotal]="totalTemplate"
+    (nzPageIndexChange)="pageNumChange($event)" (nzPageSizeChange)="pageSizeChange($event)"></nz-pagination>
+<ng-template #totalTemplate let-total>
+    <span *ngIf="showTotal">{{"pages.table.total" | translate: {total:total} }}</span>
+</ng-template>
