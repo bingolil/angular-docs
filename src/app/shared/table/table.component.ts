@@ -28,9 +28,9 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   /** 表格最大高度 固定头部 */
   @Input() maxHeight = 0;
   /** 左边固定的列数 */
-  @Input() leftFix = 2;
+  @Input() leftFix = 0;
   /** 右边固定的列数 */
-  @Input() rightFix = 2;
+  @Input() rightFix = 0;
   /** 当前页码 */
   @Input() pageNum = PAGE.pageNum;
   /** 当前每页展示条数 */
@@ -53,8 +53,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private renderer: Renderer2) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   ngAfterViewInit(): void {
     if (this.maxHeight) { // 表格存在高度，固定表头
@@ -126,7 +125,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   /**
    * 设置表格固定列
    * @param param 设置参数
-   * @returns 当前固定类宽度
+   * @returns 当前固定列宽度
    */
   setFixStyle(param: SetFixParam): number {
     let width = 0;

@@ -7,7 +7,7 @@ export class StorageUtil {
     static lang = 'lang';
 
     /**
-     * 获取语言
+     * @description 获取语言
      * @returns 语言字符串
      */
     static getLang(): string {
@@ -23,7 +23,7 @@ export class StorageUtil {
     }
 
     /** 
-     * 设置语言
+     * @description 设置语言
      * @param lang 语言
      */
     static setLang(lang: string): void {

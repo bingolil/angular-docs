@@ -2,7 +2,7 @@
 export class ArrUtil {
 
     /**
-     * 根据对象数组的某个属性去重
+     * @description 根据对象数组的某个属性去重
      * @param arr 目标数组
      * @param u_key 去重的属性名称
      * @returns 去重后的数组

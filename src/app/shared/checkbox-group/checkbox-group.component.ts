@@ -1,7 +1,7 @@
 import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
-import { OptionDetail } from 'src/app/types/form/option-detail';
+import { OptionItem } from 'src/app/types/dynamic-form';
 
 export const CHECKBOX_GROUP_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -18,7 +18,7 @@ export const CHECKBOX_GROUP_ACCESSOR: any = {
 export class CheckboxGroupComponent implements OnInit, ControlValueAccessor {
 
   /** 复选框组 */
-  @Input() options: OptionDetail[] = [];
+  @Input() options: OptionItem[] = [];
   /** 页面绑定的勾选展示 */
   dataSource: NzCheckBoxOptionInterface[] = [];
   /** 值发生变化 */

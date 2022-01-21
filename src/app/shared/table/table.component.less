@@ -1,5 +1,6 @@
 .basicShadow {
   position: absolute;
+  bottom: -1px;
   transition: box-shadow 0.3s;
   width: 30px;
   content: "";
@@ -10,14 +11,12 @@
 .leftShadow {
   box-shadow: inset 10px 0 8px -8px rgb(0 0 0 / 15%);
   right: 0;
-  bottom: -1px;
   transform: translateX(100%);
   .basicShadow();
 }
 
 .rightShadow {
   box-shadow: inset -10px 0 8px -8px rgb(0 0 0 / 15%);
-  bottom: -1px;
   left: 0;
   transform: translateX(-100%);
   .basicShadow();

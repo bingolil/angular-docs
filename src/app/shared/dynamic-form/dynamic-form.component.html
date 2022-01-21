@@ -11,7 +11,7 @@
                         [placeholder]="controlItem.placeholder" />
                 </ng-container>
                 <!-- 密码输入框 -->
-                <ng-container *ngSwitchCase="'password'">
+                <ng-container *ngSwitchCase="'inputPassowrd'">
                     <input nz-input type="password" [formControlName]="controlItem.key"
                         [readonly]="controlItem.readonly" [placeholder]="controlItem.placeholder" />
                 </ng-container>
@@ -35,7 +35,7 @@
                 </ng-container>
                 <!-- 下拉框 -->
                 <ng-container *ngSwitchCase="'selectDropdown'">
-                    <nz-select [formControlName]="controlItem.key" [nzMode]="controlItem.selectMode"
+                    <nz-select [formControlName]="controlItem.key" [nzMode]="controlItem.mode"
                         [nzPlaceHolder]="controlItem.placeholder" [nzAllowClear]="controlItem.allowClear">
                         <nz-option *ngFor="let option of controlItem.options" [nzLabel]="option.label"
                             [nzDisabled]="option.disabled" [nzValue]="option.value"></nz-option>
@@ -49,6 +49,7 @@
                 <!-- 日期范围选择框 -->
                 <ng-container *ngSwitchCase="'dateRange'">
                     <nz-range-picker [formControlName]="controlItem.key" [nzFormat]="controlItem.format"
+                        [nzPlaceHolder]="controlItem.placeholder" [nzMode]="controlItem.mode"
                         [nzInputReadOnly]="controlItem.readonly" [nzShowTime]="controlItem.showTime"
                         [nzShowNow]="controlItem.showNow" [nzRanges]="controlItem.ranges"
                         [nzDisabledDate]="controlItem.disabledDateFn" [nzDisabledTime]="controlItem.disabledTimeFn">
@@ -57,10 +58,10 @@
                 <!-- 日期选择框 -->
                 <ng-container *ngSwitchCase="'date'">
                     <nz-date-picker [formControlName]="controlItem.key" [nzFormat]="controlItem.format"
-                        [nzInputReadOnly]="controlItem.readonly" [nzPlaceHolder]="controlItem.placeholder"
-                        [nzShowTime]="controlItem.showTime" [nzShowToday]="controlItem.showToday"
-                        [nzShowNow]="controlItem.showNow" [nzDisabledDate]="controlItem.disabledDateFn"
-                        [nzDisabledTime]="controlItem.disabledTimeFn">
+                        [nzMode]="controlItem.mode" [nzInputReadOnly]="controlItem.readonly"
+                        [nzPlaceHolder]="controlItem.placeholder" [nzShowTime]="controlItem.showTime"
+                        [nzShowToday]="controlItem.showToday" [nzShowNow]="controlItem.showNow"
+                        [nzDisabledDate]="controlItem.disabledDateFn" [nzDisabledTime]="controlItem.disabledTimeFn">
                     </nz-date-picker>
                 </ng-container>
                 <!-- 时间选择框 -->
@@ -83,7 +84,10 @@
     </ng-container>
     <nz-form-item>
         <nz-form-control>
-            <button nz-button nzType="primary">Submit</button>
+            <button nz-button nzType="primary">{{'pages.form.submit' | translate}}</button>
+            <button (click)="reset($event)" *ngIf="showClear" nz-button nzType="primary">
+                {{'pages.form.clear' | translate}}
+            </button>
         </nz-form-control>
     </nz-form-item>
 </form>

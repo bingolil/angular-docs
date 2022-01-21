@@ -1,10 +1,21 @@
-nz-form-item.inline-item {
-  margin-bottom: 8px;
+nz-form-item {
   nz-form-control {
-    nz-select,
-    input,
-    textarea {
-      min-width: 200px;
+    nz-input-number {
+      width: 100%;
+    }
+    button {
+      margin-right: 8px;
+    }
+  }
+  &.inline-item {
+    margin-bottom: 8px;
+    nz-form-control {
+      nz-select,
+      nz-input-number,
+      input,
+      textarea {
+        min-width: 200px;
+      }
     }
   }
 }

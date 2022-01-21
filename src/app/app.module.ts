@@ -12,10 +12,10 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LANG } from './constant';
-import { SharedModule } from './shared/shared.module';
 import { StorageUtil } from './utils/storage-util';
 import en from '@angular/common/locales/en';
 import zh from '@angular/common/locales/zh';
+import { LoadingModule } from './components/loading/loading.module';
 registerLocaleData(en);
 registerLocaleData(zh)
 
@@ -40,7 +40,7 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
-    SharedModule,
+    LoadingModule,
     AppRoutingModule
   ],
   providers: [

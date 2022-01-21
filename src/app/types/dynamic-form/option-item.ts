@@ -1,5 +1,5 @@
 /** Option项详情 */
-export interface OptionDetail {
+export interface OptionItem {
     /** 展示的值 */
     label: any;
     /** 绑定的值 */

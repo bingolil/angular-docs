@@ -14,7 +14,6 @@ import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
-import { LoadingUiComponent } from './loading-ui/loading-ui.component';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { TableComponent } from './table/table.component';
@@ -23,7 +22,6 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    LoadingUiComponent,
     CheckboxGroupComponent,
     DynamicFormComponent,
     TableComponent
@@ -46,7 +44,6 @@ import { TranslateModule } from '@ngx-translate/core';
     ReactiveFormsModule
   ],
   exports: [
-    LoadingUiComponent,
     CheckboxGroupComponent,
     DynamicFormComponent,
     TableComponent

@@ -1,9 +1,13 @@
 {
-    "welcome":"welcome to this app",
-    "getName":"hello I am {{name}}",
-    "pages": {
-        "table": {
-          "total": "Total {{total}} item"
-        }
-      }
+  "welcome": "welcome to this app",
+  "getName": "hello I am {{name}}",
+  "pages": {
+    "table": {
+      "total": "Total {{total}} item"
+    },
+    "form": {
+      "submit": "Submit",
+      "reset": "Clear"
+    }
+  }
 }

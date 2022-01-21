@@ -2,7 +2,7 @@
 export class ObjectUtil {
 
     /**
-     * 深度拷贝
+     * @description 深度拷贝
      * @param obj 被深度拷贝对象
      * @returns 深度拷贝的新对象
      */
@@ -23,7 +23,7 @@ export class ObjectUtil {
     }
 
     /**
-     * 清理对象属性值为字符串的值空格
+     * @description 清理对象属性值为字符串的值空格
      * @param obj 清理的对象
      * @returns 清理后的新对象
      */
