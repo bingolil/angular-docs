@@ -8,7 +8,9 @@ export class RouterService {
 
   constructor(private router: Router) { }
 
-  /** 导航到主页 */
+  /** 
+   * @description 导航到主页
+   */
   navigateToHome(): void {
     this.router.navigate(['/']);
   }

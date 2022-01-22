@@ -6,6 +6,12 @@ nz-form-item {
     button {
       margin-right: 8px;
     }
+    nz-range-picker {
+      ::ng-deep .ant-picker-active-bar { // ng-zorro-antd（V13 bug）初始化日期范围选择样式
+        position: absolute;
+        left: 0;
+      }
+    }
   }
   &.inline-item {
     margin-bottom: 8px;

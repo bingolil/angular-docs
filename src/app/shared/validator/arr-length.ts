@@ -1,7 +1,7 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 /** 
- * 自定义验证器函数 数组长度
+ * @description 自定义验证器函数 数组长度
  * @param min 数组最小长度
  * @param max 数组最大长度
  * @returns 验证器函数

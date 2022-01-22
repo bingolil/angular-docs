@@ -1,6 +1,5 @@
 {
   "welcome": "欢迎使用本应用",
-  "getName": "你好，我是{{name}}",
   "pages": {
     "table": {
       "total": "共 {{total}} 条"
@@ -8,6 +7,11 @@
     "form": {
       "submit": "提交",
       "clear": "清空"
+    },
+    "upload": {
+      "selectFile": "选择文件",
+      "startUpload": "开始上传",
+      "limitErrMsg": "一次最多支持上传{{limit}}个文件"
     }
   }
 }

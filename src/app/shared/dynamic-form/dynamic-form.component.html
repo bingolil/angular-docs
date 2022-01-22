@@ -1,10 +1,10 @@
 <form (ngSubmit)="onSubmit()" nz-form [formGroup]="dynamicForm" [nzLayout]="layout">
     <ng-container *ngFor="let controlItem of formControls">
         <nz-form-item [ngSwitch]="controlItem.type" [ngClass]="{'inline-item':layout==='inline'}">
-            <nz-form-label [nzSpan]="isHorizontal ? labelSpan :null" [nzRequired]="showStarMap.get(controlItem.key)">
+            <nz-form-label [nzSpan]="leftNzSpan" [nzRequired]="showStarMap.get(controlItem.key)">
                 {{controlItem.label}}
             </nz-form-label>
-            <nz-form-control [nzSpan]="isHorizontal ? controlSpan :null" [nzErrorTip]="controlErrorTpl">
+            <nz-form-control [nzSpan]="rightNzSpan" [nzErrorTip]="controlErrorTpl">
                 <!-- 单行文本输入框 -->
                 <ng-container *ngSwitchCase="'inputText'">
                     <input nz-input [formControlName]="controlItem.key" [readonly]="controlItem.readonly"
@@ -83,7 +83,7 @@
         </nz-form-item>
     </ng-container>
     <nz-form-item>
-        <nz-form-control>
+        <nz-form-control [nzOffset]="leftNzSpan">
             <button nz-button nzType="primary">{{'pages.form.submit' | translate}}</button>
             <button (click)="reset($event)" *ngIf="showClear" nz-button nzType="primary">
                 {{'pages.form.clear' | translate}}

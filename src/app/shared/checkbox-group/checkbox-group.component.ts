@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
 import { OptionItem } from 'src/app/types/dynamic-form';
@@ -13,6 +13,7 @@ export const CHECKBOX_GROUP_ACCESSOR: any = {
   selector: 'docs-checkbox-group',
   templateUrl: './checkbox-group.component.html',
   styleUrls: ['./checkbox-group.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CHECKBOX_GROUP_ACCESSOR]
 })
 export class CheckboxGroupComponent implements OnInit, ControlValueAccessor {
@@ -34,7 +35,7 @@ export class CheckboxGroupComponent implements OnInit, ControlValueAccessor {
   }
 
   /** 
-   * 写入初始值（实现ControlValueAccessor接口的方法）
+   * @description 写入初始值（实现ControlValueAccessor接口的方法）
    * @param arr 初始值
    */
   writeValue(arr: any): void {
@@ -47,7 +48,7 @@ export class CheckboxGroupComponent implements OnInit, ControlValueAccessor {
   }
 
   /**
-   * 设置当前控件受到改变时需要调用的方法函数（实现ControlValueAccessor接口的方法）
+   * @description 设置当前控件受到改变时需要调用的方法函数（实现ControlValueAccessor接口）
    * @param fn 方法
    */
   registerOnChange(fn: any): void {
@@ -55,13 +56,13 @@ export class CheckboxGroupComponent implements OnInit, ControlValueAccessor {
   }
 
   /**
-   * 设置当前控件touched时需要调用的方法函数（实现ControlValueAccessor接口的方法）
+   * @description 设置当前控件touched时需要调用的方法函数（实现ControlValueAccessor接口）
    * @param fn 方法函数
    */
   registerOnTouched(fn: any): void { }
 
   /**
-   * 设置表单可选项（实现ControlValueAccessor接口的方法）
+   * @description 设置表单可选项（实现ControlValueAccessor接口）
    * @param isDisabled 是否不可选
    */
   setDisabledState(isDisabled: boolean): void {
@@ -69,7 +70,7 @@ export class CheckboxGroupComponent implements OnInit, ControlValueAccessor {
   }
 
   /**
-   * 复选框单选勾选发生变更
+   * @description 复选框单选勾选发生变更
    * @param checkList 复选框勾选情况
    */
   changeItem(checkList: NzCheckBoxOptionInterface[]) {

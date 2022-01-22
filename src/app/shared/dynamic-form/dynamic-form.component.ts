@@ -15,7 +15,7 @@ export class DynamicFormComponent implements OnInit {
 
   /** 表单对象 */
   @Input() formControls: any[] = [];
-  /** 表单布局 'horizontal' | 'vertical' | 'inline' */
+  /** 表单布局 'horizontal'水平模式 | 'vertical'堆叠模式 | 'inline'内联模式 */
   @Input() layout: NzFormLayoutType = 'horizontal';
   /** 展示必填星号 */
   @Input() showStar = true;
@@ -33,19 +33,32 @@ export class DynamicFormComponent implements OnInit {
   dynamicForm!: FormGroup;
   /** 页面绑定的必填星号Map */
   showStarMap: Map<string, boolean> = new Map();
-  /** 是否为垂直水平布局 */
-  get isHorizontal(): boolean {
-    return this.layout === 'horizontal';
+  /** 表单水平模式时，左边栅格数 */
+  get leftNzSpan(): number | null {
+    return this.layout === 'horizontal' ? this.labelSpan : null;
+  }
+  /** 表单水平模式时，右边栅格数 */
+  get rightNzSpan(): number | null {
+    return this.layout === 'horizontal' ? this.controlSpan : null;
   }
 
   constructor() { }
 
   ngOnInit(): void {
+    // 表单初始对象（example value）：
+    // controls: BasicField<any>[] = [
+    //   new InpuTextField({ key: 'username', value: '', label: '姓名' }),
+    //   new InputPasswordField({ key: 'passowrd', value: '', label: '密码' }),
+    //   new InputNumberField({ key: 'age', value: undefined, label: '年龄' }),
+    //   new TextareaField({ key: 'desc', value: '', label: '描述' })
+    // ];
     console.log(this.formControls);
     this.createForm();
   }
 
-  /** 将控件写入表单 */
+  /** 
+   * @description 将控件写入表单
+   */
   createForm(): void {
     const group: any = {};
     this.formControls.forEach(control => {
@@ -59,7 +72,7 @@ export class DynamicFormComponent implements OnInit {
   }
 
   /**
-   * 获取校验项
+   * @description 获取校验项
    * @param itemInfo 初始校验数据
    * @returns 校验项
    */
@@ -86,7 +99,9 @@ export class DynamicFormComponent implements OnInit {
     }
   }
 
-  /** 提交表单的值 */
+  /** 
+   * @description 提交表单的值
+   */
   onSubmit(): void {
     const basicObj = ObjectUtil.deepCopy(this.dynamicForm.value);
     this.formControls.filter(dd => dd.type === 'inputPassowrd').forEach(item => {
@@ -110,7 +125,10 @@ export class DynamicFormComponent implements OnInit {
     this.emitFormValue.emit(this.dynamicForm.value);
   }
 
-  /** 重置表单 */
+  /** 
+   * @description 重置表单
+   * @param event 点击事件
+   */
   reset(event: MouseEvent): void {
     event.preventDefault(); // 防止调用onSubmit方法
     this.dynamicForm.reset(); // 设置各个控件标记为 untouched 和 pristine 都为true

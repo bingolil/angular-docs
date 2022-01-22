@@ -2,19 +2,20 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import zh from '@angular/common/locales/zh';
+
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { en_US, NZ_I18N, zh_CN } from 'ng-zorro-antd/i18n';
-
-import { registerLocaleData } from '@angular/common';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LANG } from './constant';
 import { StorageUtil } from './utils/storage-util';
-import en from '@angular/common/locales/en';
-import zh from '@angular/common/locales/zh';
+
 import { LoadingModule } from './components/loading/loading.module';
 registerLocaleData(en);
 registerLocaleData(zh)

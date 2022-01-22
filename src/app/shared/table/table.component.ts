@@ -79,7 +79,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /**
-  * ng-content发生变化时调用
+  * @description ng-content发生变化时调用
   * @param event MutationRecord 变化的内容（ui中为$event）
   */
   onContentChange() {
@@ -87,7 +87,9 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     this.resetTableStyle();
   }
 
-  /** 重置表格样式，存在固定列时，添加样式类  sticky */
+  /** 
+   * @description 重置表格样式，存在固定列时，添加样式类  sticky
+   */
   resetTableStyle() {
     const theadTrList = this.dataTable.nativeElement.querySelector('thead')?.children;
     const tbodyTrList = this.dataTable.nativeElement.querySelector('tbody')?.children
@@ -123,7 +125,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /**
-   * 设置表格固定列
+   * @description 设置表格固定列
    * @param param 设置参数
    * @returns 当前固定列宽度
    */
@@ -148,7 +150,9 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     return width;
   }
 
-  /** 重置固定列阴影 */
+  /** 
+   * @description 重置固定列阴影
+   */
   resetTableShadow() {
     const theadTrList = this.dataTable.nativeElement.querySelector('thead')?.children;
     const tbodyTrList = this.dataTable.nativeElement.querySelector('tbody')?.children;
@@ -171,7 +175,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /**
-   * 设置固定阴影
+   * @description 设置固定阴影
    * @param isAddClass 是否添加样式类 true添加，false移除
    * @param isLeft true为左边，false为右边
    * @param trListDom tr列表
@@ -195,7 +199,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /**
-   * 页码发生改变
+   * @description 页码发生改变
    * @param pageNum 页码
    */
   pageNumChange(pageNum: number) {
@@ -204,7 +208,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   /**
-   * 每页展示条数发生改变
+   * @description 每页展示条数发生改变
    * @param pageSize 每页展示条数
    */
   pageSizeChange(pageSize: number) {

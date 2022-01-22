@@ -1,0 +1,12 @@
+<div class="upload-wrap">
+  <nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload" [nzMultiple]="multiple" [nzDirectory]="directory"
+    [nzLimit]="limit" [nzListType]="listType">
+    <button nz-button>
+      {{'pages.upload.selectFile' | translate}}
+    </button>
+  </nz-upload>
+  <button *ngIf="showUploadBtn" nz-button (click)="handleUpload()" [nzType]="'primary'" class="btn-upload"
+    [nzLoading]="uploading" [disabled]="fileList.length === 0">
+    {{ 'pages.upload.startUpload' | translate }}
+  </button>
+</div>

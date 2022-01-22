@@ -1,6 +1,5 @@
 {
   "welcome": "welcome to this app",
-  "getName": "hello I am {{name}}",
   "pages": {
     "table": {
       "total": "Total {{total}} item"
@@ -8,6 +7,11 @@
     "form": {
       "submit": "Submit",
       "reset": "Clear"
+    },
+    "upload": {
+      "selectFile": "Select File",
+      "startUpload": "Start Upload",
+      "limitErrMsg": "Up to {{limit}} files can be uploaded at a time"
     }
   }
 }
