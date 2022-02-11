@@ -1,4 +1,4 @@
-import { InputNumberControl } from "src/app/types/dynamic-form";
+import { InputNumberControl } from "src/app/interfaces/dynamic-form";
 import { BasicField } from "./basic-field";
 
 export class InputNumberField extends BasicField<number>{

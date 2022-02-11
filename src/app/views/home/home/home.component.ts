@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from 'src/app/services/home/home.service';
 
 @Component({
   selector: 'docs-home',
@@ -7,15 +6,17 @@ import { HomeService } from 'src/app/services/home/home.service';
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent implements OnInit {
+  
+  constructor() { }
 
-  constructor(private homeService: HomeService) { }
+  ngOnInit(): void { 
+    
+  }
 
-  ngOnInit(): void { }
-
-  btnFn() {
-    this.homeService.getData().subscribe(res => {
-      console.log(res);
-    })
+  quanping(){
+    const dom=document.getElementById('dd');
+    // console.log(dom?.requestFullscreen());
+    dom?.requestFullscreen()
   }
 
 }

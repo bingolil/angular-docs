@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
-import { OptionItem } from 'src/app/types/dynamic-form';
+import { OptionItem } from 'src/app/interfaces/dynamic-form';
 
 export const CHECKBOX_GROUP_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,

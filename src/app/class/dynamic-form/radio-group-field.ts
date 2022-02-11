@@ -1,4 +1,4 @@
-import { OptionItem, RadioGroupControl } from "src/app/types/dynamic-form";
+import { OptionItem, RadioGroupControl } from "src/app/interfaces/dynamic-form";
 import { BasicField } from "./basic-field";
 
 export class RadioGroupField extends BasicField<any>{

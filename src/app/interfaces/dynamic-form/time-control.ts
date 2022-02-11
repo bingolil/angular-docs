@@ -1,7 +1,7 @@
 import { BasicControl } from "./basic-control";
 
 /** 时间控件类实例化参数接口 */
-export interface TimeControl extends BasicControl<Date | number> {
+export interface TimeControl extends BasicControl<Date | number | string> {
     /** 12小时制 */
     use12Hours?: boolean;
     /** 时间格式 */

@@ -1,4 +1,4 @@
-import { CheckboxGroupControl, OptionItem } from "src/app/types/dynamic-form";
+import { CheckboxGroupControl, OptionItem } from "src/app/interfaces/dynamic-form";
 import { BasicField } from "./basic-field";
 
 export class CheckboxGroupField extends BasicField<any>{

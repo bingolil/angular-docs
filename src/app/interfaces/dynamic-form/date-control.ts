@@ -2,7 +2,7 @@ import { DisabledDateFn, DisabledTimeFn, NzDateMode } from "ng-zorro-antd/date-p
 import { BasicControl } from "./basic-control";
 
 /** 日期控件类实例化参数接口 */
-export interface DateControl extends BasicControl<Date | number> {
+export interface DateControl extends BasicControl<Date | number | string> {
   /** 日期或时间格式  */
   format?: string;
   /** 'year' | 'month' | 'week' | 'date' */

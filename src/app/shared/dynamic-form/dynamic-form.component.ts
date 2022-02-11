@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { NzFormLayoutType } from 'ng-zorro-antd/form';
-import { ValidatorItem } from 'src/app/types/dynamic-form';
+import { ValidatorItem } from 'src/app/interfaces/dynamic-form';
 import { ObjectUtil } from 'src/app/utils/object-util';
 import { arrLengthValidator } from '../validator/arr-length';
 

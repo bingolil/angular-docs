@@ -5,5 +5,5 @@ export interface OptionItem {
     /** 绑定的值 */
     value: any;
     /** 当前值是否不可用 */
-    disabled?: boolean
+    disabled?: boolean;
 }

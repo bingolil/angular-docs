@@ -1,7 +1,7 @@
-import { TimeControl } from "src/app/types/dynamic-form";
+import { TimeControl } from "src/app/interfaces/dynamic-form";
 import { BasicField } from ".";
 
-export class TimeField extends BasicField<Date | number> {
+export class TimeField extends BasicField<Date | number | string> {
 
     /** 控件类型：时间 */
     type = 'time';

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { ResultCode } from 'src/app/constant';
-import { HttpOptions } from '../../types/http/http-options';
+import { HttpOptions } from '../../interfaces/http/http-options';
 import { LoadingService } from './loading.service';
 
 @Injectable({
@@ -114,7 +114,6 @@ export class HttpService {
   /**
    * @description 处理http响应体
    * @param res http请求响应体
-   * @param options http请求参数
    */
   reponse(res: any): void {
     this.loadingService.loading$.next(false);

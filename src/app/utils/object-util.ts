@@ -7,19 +7,19 @@ export class ObjectUtil {
      * @returns 深度拷贝的新对象
      */
     static deepCopy<T>(obj: T): T {
-        let o: any;
+        let resultObj: any;
         if (Array.isArray(obj)) {
-            o = [];
-            obj.forEach(item => o.push(this.deepCopy(item)));
+            resultObj = [];
+            obj.forEach(item => resultObj.push(this.deepCopy(item)));
         } else if (Object.prototype.toString.call(obj) === '[object Object]') {
-            o = {};
+            resultObj = {};
             for (let key in obj) {
-                o[key] = this.deepCopy(obj[key]);
+                resultObj[key] = this.deepCopy(obj[key]);
             }
         } else {
-            o = obj;
+            resultObj = obj;
         }
-        return o;
+        return resultObj;
     }
 
     /**
@@ -28,21 +28,21 @@ export class ObjectUtil {
      * @returns 清理后的新对象
      */
     static trimSpace<T>(obj: T): T {
-        let o: any;
+        let resultObj: any;
         if (typeof (obj) === 'string') { // 字符串
-            o = obj.trim();
+            resultObj = obj.trim();
         } else if (Array.isArray(obj)) { // 数组
-            o = [];
-            obj.forEach(item => o.push(this.trimSpace(item)));
+            resultObj = [];
+            obj.forEach(item => resultObj.push(this.trimSpace(item)));
         } else if (Object.prototype.toString.call(obj) === '[object Object]') { // 对象
-            o = {};
+            resultObj = {};
             for (let key in obj) {
-                o[key] = this.trimSpace(obj[key]);
+                resultObj[key] = this.trimSpace(obj[key]);
             }
         } else {
-            o = obj;
+            resultObj = obj;
         }
-        return o;
+        return resultObj;
     }
 
 }
