@@ -39,9 +39,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "@techiediaries/ngx-qrcode"
-            ],
+            "allowedCommonJsDependencies": ["@techiediaries/ngx-qrcode"],
             "outputPath": "dist/angular-docs",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -61,17 +59,15 @@
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.less"
             ],
-            "scripts": [
-              "./node_modules/echarts/dist/echarts.min.js"
-            ]
+            "scripts": ["./node_modules/echarts/dist/echarts.min.js"]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -85,6 +81,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+              "aot": true,
               "outputHashing": "all"
             },
             "development": {
@@ -124,13 +121,8 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "less",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.less"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.less"],
             "scripts": []
           }
         }
