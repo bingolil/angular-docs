@@ -8,15 +8,14 @@ import zh from '@angular/common/locales/zh';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { en_US, NZ_I18N, zh_CN } from 'ng-zorro-antd/i18n';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LANG } from './constant';
-import { StorageUtil } from './utils/storage-util';
 
 import { LoadingModule } from './components/loading/loading.module';
+import { LangUtil, StorageUtil } from './utils';
 registerLocaleData(en);
 registerLocaleData(zh)
 
@@ -47,16 +46,7 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [
     {
       provide: NZ_I18N, /** 配置 ng-zorro-antd 国际化 **/
-      useFactory: () => {
-        switch (StorageUtil.getLang()) {
-          case LANG.zhCn:
-            return zh_CN;
-          case LANG.enUs:
-            return en_US;
-          default:
-            return zh_CN
-        }
-      }
+      useFactory: () => LangUtil.getAntdLangInfo()
     }
   ],
   bootstrap: [AppComponent]
