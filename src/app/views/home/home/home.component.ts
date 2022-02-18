@@ -6,17 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent implements OnInit {
-  
+
   constructor() { }
 
-  ngOnInit(): void { 
-    
-  }
-
-  quanping(){
-    const dom=document.getElementById('dd');
-    // console.log(dom?.requestFullscreen());
-    dom?.requestFullscreen()
-  }
+  ngOnInit(): void { }
 
 }

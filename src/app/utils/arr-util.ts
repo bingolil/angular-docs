@@ -79,7 +79,7 @@ export class ArrUtil {
             return treeItem;
         }
         const treeNodeList: TreeNode[] = [];
-        parentList.forEach(parentItem => {
+        parentList.forEach(parentItem => { // 循环写入父节点
             treeNodeList.push(getTreeNode(parentItem, childrenList, 1));
         });
 

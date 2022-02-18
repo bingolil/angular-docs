@@ -11,8 +11,13 @@ export class RouterService {
   /** 
    * @description 导航到主页
    */
-  navigateToHome(): void {
+  goToHome(): void {
     this.router.navigate(['/']);
   }
+
+  /**
+   * @description 导航到登录页
+   */
+  goToLogin(): void { }
 
 }

@@ -5,6 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { ResultCode } from 'src/app/constant';
 import { HttpOptions } from '../../interfaces/http/http-options';
 import { LoadingService } from './loading.service';
+import { RouterService } from './router.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class HttpService {
 
   constructor(
     private http: HttpClient,
+    private routerService: RouterService,
     private loadingService: LoadingService
   ) { }
 
@@ -92,6 +94,7 @@ export class HttpService {
 
     if (errRes.status === ResultCode.NoPermission) { // 无权限
       // 登出操作
+      this.routerService.goToLogin();
     }
     return of(errRes);
   }
