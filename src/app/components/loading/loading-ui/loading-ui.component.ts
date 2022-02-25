@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { LoadingService } from 'src/app/services/base/loading.service';
 
+// http请求动画ui
 @Component({
   selector: 'docs-loading-ui',
   templateUrl: './loading-ui.component.html',
@@ -8,9 +10,19 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 })
 export class LoadingUiComponent implements OnInit {
 
-  constructor() { }
+  /** 是否展示loading动画 */
+  loading = false;
+
+  constructor(
+    private loadingService: LoadingService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
+    this.loadingService.loading$.subscribe(loading => {
+      this.loading = loading;
+      this.cdr.markForCheck();
+    })
   }
 
 }

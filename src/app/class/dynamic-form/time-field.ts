@@ -1,5 +1,5 @@
 import { TimeControl } from "src/app/interfaces/dynamic-form";
-import { BasicField } from ".";
+import { BasicField } from "./basic-field";
 
 export class TimeField extends BasicField<Date | number | string> {
 

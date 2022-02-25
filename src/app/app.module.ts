@@ -15,7 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { LoadingModule } from './components/loading/loading.module';
-import { LangUtil, StorageUtil } from './utils';
+import { StorageUtil } from './utils';
+import { LanguageService } from './services/base/language.service';
 registerLocaleData(en);
 registerLocaleData(zh)
 
@@ -32,13 +33,13 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserAnimationsModule,
     HttpClientModule,
     TranslateModule.forRoot({
-      defaultLanguage: StorageUtil.getLang(),
+      defaultLanguage: StorageUtil.getLang(), // 初始默认语言
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
         deps: [HttpClient]
       }
-    }),
+    }), // 在其它模块中直接导入 NgxEchartsModule 即可使用
     NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
     LoadingModule,
     AppRoutingModule
@@ -46,7 +47,7 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [
     {
       provide: NZ_I18N, /** 配置 ng-zorro-antd 国际化 **/
-      useFactory: () => LangUtil.getAntdLangInfo()
+      useFactory: () => LanguageService.getAntdLangInfo()
     }
   ],
   bootstrap: [AppComponent]

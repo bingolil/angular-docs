@@ -32,7 +32,7 @@ export class HttpService {
    * @param options 请求参数
    * @returns 返回post请求的结果
    */
-  post<T>(options: HttpOptions): Observable<any> {
+  post(options: HttpOptions): Observable<any> {
     return this.sendRequest('post', options);
   }
 
@@ -43,6 +43,15 @@ export class HttpService {
    */
   put(options: HttpOptions): Observable<any> {
     return this.sendRequest('put', options);
+  }
+
+   /**
+   * @description 发送patch请求（打补丁）
+   * @param options 请求参数
+   * @returns 返回patch请求的结果
+   */
+  patch(options: HttpOptions): Observable<any> {
+    return this.sendRequest('patch', options);
   }
 
   /**
@@ -86,7 +95,7 @@ export class HttpService {
    */
   private catchHttpError(errRes: HttpErrorResponse, options: HttpOptions): Observable<any> {
 
-    this.loadingService.loading$.next(false); // 关闭http请求遮罩
+    this.loadingService.loading$.next(false); // 关闭http请求loading ui
 
     if (options.showErrorMsg) {
       // 展示错误信息

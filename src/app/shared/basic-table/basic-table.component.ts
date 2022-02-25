@@ -15,13 +15,14 @@ interface SetFixParam {
   trListDom?: HTMLCollection;
 }
 
+// 基础表格
 @Component({
-  selector: 'docs-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.less'],
+  selector: 'docs-basic-table',
+  templateUrl: './basic-table.component.html',
+  styleUrls: ['./basic-table.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
+export class BasicTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /** 表格数据总条数 */
   @Input() total = 0;

@@ -1,5 +1,4 @@
 {
-  "welcome": "welcome to this app",
   "pages": {
     "table": {
       "total": "Total {{total}} item"

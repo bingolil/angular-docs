@@ -23,4 +23,6 @@ export const ResultCode = {
     Ok: 200,
     /** 无权限，需进行身份验证 */
     NoPermission: 401,
-};
+    /** 未找到api地址 */
+    NotFound: 404
+} as const;

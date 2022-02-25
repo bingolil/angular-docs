@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ObserversModule } from '@angular/cdk/observers';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -16,21 +17,20 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import { TableComponent } from './table/table.component';
-import { TranslateModule } from '@ngx-translate/core';
+import { BasicTableComponent } from './basic-table/basic-table.component';
 
 
 @NgModule({
   declarations: [
     CheckboxGroupComponent,
     DynamicFormComponent,
-    TableComponent
+    BasicTableComponent,
   ],
   imports: [
     CommonModule,
-    NzFormModule,
     ObserversModule,
     TranslateModule,
+    NzFormModule,
     NzButtonModule,
     NzInputModule,
     NzInputNumberModule,
@@ -46,7 +46,7 @@ import { TranslateModule } from '@ngx-translate/core';
   exports: [
     CheckboxGroupComponent,
     DynamicFormComponent,
-    TableComponent
+    BasicTableComponent,
   ]
 })
 export class SharedModule { }

@@ -1,5 +1,4 @@
 {
-  "welcome": "欢迎使用本应用",
   "pages": {
     "table": {
       "total": "共 {{total}} 条"

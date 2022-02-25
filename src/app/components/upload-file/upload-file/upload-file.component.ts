@@ -5,13 +5,14 @@ import { NzUploadFile, NzUploadListType } from 'ng-zorro-antd/upload';
 import { ResultCode } from 'src/app/constant';
 import { HttpService } from 'src/app/services/base/http.service';
 
+// 上传文件组件
 @Component({
-  selector: 'docs-upload',
-  templateUrl: './upload.component.html',
-  styleUrls: ['./upload.component.less'],
+  selector: 'docs-upload-file',
+  templateUrl: './upload-file.component.html',
+  styleUrls: ['./upload-file.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UploadComponent implements OnInit {
+export class UploadFileComponent implements OnInit {
 
   /** 上传组件，上传url地址 */
   @Input() url = 'demo-upload-api';
@@ -34,7 +35,7 @@ export class UploadComponent implements OnInit {
   fileList: NzUploadFile[] = [];
 
   constructor(
-    private http: HttpService,
+    private httpService: HttpService,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef
   ) { }
@@ -79,7 +80,7 @@ export class UploadComponent implements OnInit {
     }
     this.uploading = true;
 
-    this.http.post({ url: this.url, data: formData }).subscribe(res => {
+    this.httpService.post({ url: this.url, data: formData }).subscribe(res => {
       this.uploading = false;
       if (res.code === ResultCode.Ok) { // 上传成功，清理已选文件
         this.fileList = [];

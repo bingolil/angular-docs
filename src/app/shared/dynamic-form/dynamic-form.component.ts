@@ -13,7 +13,7 @@ import { arrLengthValidator } from '../validator/arr-length';
 })
 export class DynamicFormComponent implements OnInit {
 
-  /** 表单对象 */
+  /** 表单对象 BasicField<any>[] */
   @Input() formControls: any[] = [];
   /** 表单布局 'horizontal'水平模式 | 'vertical'堆叠模式 | 'inline'内联模式 */
   @Input() layout: NzFormLayoutType = 'horizontal';

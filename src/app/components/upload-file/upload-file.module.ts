@@ -4,11 +4,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 
-import { UploadComponent } from './upload/upload.component';
+import { UploadFileComponent } from './upload-file/upload-file.component';
 
 @NgModule({
   declarations: [
-    UploadComponent
+    UploadFileComponent
   ],
   imports: [
     CommonModule,
@@ -17,6 +17,6 @@ import { UploadComponent } from './upload/upload.component';
     NzUploadModule
 
   ],
-  exports: [UploadComponent]
+  exports: [UploadFileComponent]
 })
-export class UploadModule { }
+export class UploadFileModule { }

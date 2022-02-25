@@ -8,6 +8,6 @@ import { LoadingService } from './services/base/loading.service';
 })
 export class AppComponent {
 
-  constructor(public loadingService: LoadingService) { }
+  constructor() { }
 
 }
