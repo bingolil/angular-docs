@@ -1,0 +1,93 @@
+// 导入变量 less
+@import "./variables.less";
+
+// 公共样式类型
+
+// 背景颜色
+.bg-primary {
+  background-color: @blue;
+}
+
+.bg-success {
+  background-color: @green;
+}
+
+.bg-danger {
+  background-color: @red;
+}
+
+.bg-info {
+  background-color: @cyan;
+}
+
+.bg-light {
+  background-color: @light;
+}
+
+.bg-warning {
+  background-color: @yellow;
+}
+
+.bg-dark {
+  background-color: @dark;
+}
+
+.bg-white {
+  background-color: @white;
+}
+
+// 文本颜色
+.text-white {
+  color: @white;
+}
+
+.text-dark {
+  color: @dark;
+}
+
+// 浮动
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+// margin外边距和padding内边距
+each(@spaceingType, .(@typeVal, @typeKey, @typeIdx) {
+  each(@directions, .(@dirVal, @dirKey, @dirIdx) {
+    each(@spaceingSizes, {
+      .@{typeKey}@{dirKey}-@{key} { // eg:  mt-32
+          @{typeVal}-@{dirVal}: @value; // val: { maring-top: 32px }
+      } 
+    })
+  })
+});
+
+// 定位
+.position-relative {
+  position: relative !important;
+}
+
+.position-absolute {
+  position: absolute !important;
+}
+
+// 透明百分百样式类
+each(@opacityValues, {
+  .opacity-@{key} { // eg:  opacity-50
+    opacity: @value!important; // val: { opacity: .5!important }
+  } 
+});
