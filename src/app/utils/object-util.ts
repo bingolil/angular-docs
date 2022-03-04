@@ -1,3 +1,5 @@
+import { TypeJudgmentUtil } from "./type-judgment-util";
+
 /** 对象工具 */
 export class ObjectUtil {
 
@@ -11,7 +13,7 @@ export class ObjectUtil {
         if (Array.isArray(obj)) {
             resultObj = [];
             obj.forEach(item => resultObj.push(this.deepCopy(item)));
-        } else if (Object.prototype.toString.call(obj) === '[object Object]') {
+        } else if (TypeJudgmentUtil.isObject(obj)) {
             resultObj = {};
             for (let key in obj) {
                 resultObj[key] = this.deepCopy(obj[key]);
@@ -23,21 +25,21 @@ export class ObjectUtil {
     }
 
     /**
-     * @description 清理对象属性值为字符串的值空格
+     * @description 清理对象属性值为字符串的值前后空格
      * @param obj 清理的对象
      * @returns 清理后的新对象
      */
-    static trimSpace<T>(obj: T): T {
+    static clearEmptyString<T>(obj: T): T {
         let resultObj: any;
         if (typeof (obj) === 'string') { // 字符串
             resultObj = obj.trim();
         } else if (Array.isArray(obj)) { // 数组
             resultObj = [];
-            obj.forEach(item => resultObj.push(this.trimSpace(item)));
-        } else if (Object.prototype.toString.call(obj) === '[object Object]') { // 对象
+            obj.forEach(item => resultObj.push(this.clearEmptyString(item)));
+        } else if (TypeJudgmentUtil.isObject(obj)) { // 对象
             resultObj = {};
             for (let key in obj) {
-                resultObj[key] = this.trimSpace(obj[key]);
+                resultObj[key] = this.clearEmptyString(obj[key]);
             }
         } else {
             resultObj = obj;

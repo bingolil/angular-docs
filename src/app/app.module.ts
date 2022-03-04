@@ -14,9 +14,9 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { LoadingModule } from './components/loading/loading.module';
 import { StorageUtil } from './utils';
 import { LanguageService } from './services/base/language.service';
+import { LoadingModule } from './components/common/loading/loading.module';
 registerLocaleData(en);
 registerLocaleData(zh)
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, forwardRef, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
 import { OptionItem } from 'src/app/interfaces/dynamic-form';
@@ -8,6 +8,17 @@ export const CHECKBOX_GROUP_ACCESSOR: any = {
   useExisting: forwardRef(() => CheckboxGroupComponent),
   multi: true
 };
+
+/**
+ * 自定义表单控件：多选checbox组
+ * 
+ * example：
+ *  ts：
+ *   hobby = ['swin','playGame'];
+ *   options = [{ label: '游泳', value: 'swin' }, { label: '游戏', value: 'game' }];
+ *  html：
+ *   <docs-checkbox-group [(ngModel)]="hobby" [options]="options"></docs-checkbox-group>
+ */
 
 @Component({
   selector: 'docs-checkbox-group',
@@ -25,7 +36,7 @@ export class CheckboxGroupComponent implements OnInit, ControlValueAccessor {
   /** 值发生变化 */
   onChange = (_: any) => { };
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.options.forEach(item => {
@@ -39,12 +50,14 @@ export class CheckboxGroupComponent implements OnInit, ControlValueAccessor {
    * @param arr 初始值
    */
   writeValue(arr: any): void {
+    this.dataSource.forEach(item => item.checked = false); // 重置勾选状态
     if (Array.isArray(arr)) {
       arr.forEach(itemValue => {
         const valueIndex = this.dataSource.findIndex(dd => dd.value === itemValue);
         this.dataSource[valueIndex].checked = true;
       })
     }
+    this.cdr.markForCheck();
   }
 
   /**

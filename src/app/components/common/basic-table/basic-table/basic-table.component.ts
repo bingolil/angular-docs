@@ -15,7 +15,25 @@ interface SetFixParam {
   trListDom?: HTMLCollection;
 }
 
-// 基础表格
+/**
+ * 基础表格
+ * <docs-basic-table>
+ *  <thead>
+ *    <tr>
+ *      <th>姓名</th>
+ *      <th>年龄</th>
+ *    </tr>
+ *  </thead>
+ *  <tbody>
+ *    <tr>
+ *      <td>jack</td>
+ *      <td>18</td>
+ *    </tr>
+ *  </tbody>
+ * </docs-basic-table>
+ * 
+ * 
+ * */
 @Component({
   selector: 'docs-basic-table',
   templateUrl: './basic-table.component.html',

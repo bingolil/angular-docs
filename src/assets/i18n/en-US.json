@@ -3,9 +3,11 @@
     "table": {
       "total": "Total {{total}} item"
     },
-    "form": {
+    "btn": {
       "submit": "Submit",
-      "reset": "Clear"
+      "search": "Search",
+      "clear": "Clear",
+      "reset": "Reset"
     },
     "upload": {
       "selectFile": "Select File",

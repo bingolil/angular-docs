@@ -1,9 +1,9 @@
 import { ValidatorItem } from "./validator-item";
 
-/** 基础控件接口 */
+/** 基础控件实例化参数接口 */
 export interface BasicControl<T> {
     /** 当前表单的值 */
-    value: T | undefined;
+    value: T | null;
     /** 响应式表单绑定的属性 */
     key: string;
     /** 表单控件项描述 */
@@ -14,6 +14,6 @@ export interface BasicControl<T> {
     readonly?: boolean;
     /** 表单控件占位内容 */
     placeholder?: string | string[];
-    /** 校验列表 */
+    /** 校验列表 ValidatorItem中类型type唯一  */
     validatorList?: ValidatorItem[];
 }

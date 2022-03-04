@@ -2,11 +2,12 @@
 type ValidatorType = 'required' // 必填
     | 'min' // 最小值
     | 'max' // 最大值
-    | 'minLength' // 字符串最短长度
-    | 'maxLength' // 字符串最长长度
-    | 'regexp' // 正则表达式
+    | 'minlength' // 字符串最短长度
+    | 'maxlength' // 字符串最长长度
+    | 'pattern' // 正则校验
     | 'email' // 邮件
-    | 'arrLength'; // 数组长度
+    | 'validateEqual' // 校验值相等，example：确认密码
+    | 'validateArrLength'; // 校验数组长度
 
 /** 校验信息接口 */
 export interface ValidatorItem {
@@ -14,10 +15,18 @@ export interface ValidatorItem {
     type: ValidatorType;
     /** 提示信息 */
     msg: string;
-    /** 值 */
+    /** 
+     * 值
+     *  min，max，minLength，maxLength为number；
+     *  regexp，validateForbiddenw为string或Regexp
+     */
     value?: number | RegExp;
     /** 数组长度最小值 */
     min?: number;
     /** 数组长度最大值 */
     max?: number;
+    /** 比较值时，比较的属性名称 */
+    equalAttrName?: string;
+    /** 比较值时，是否监听当前控件，存在监听时，不展示错误信息 */
+    hasListener?: boolean;
 }

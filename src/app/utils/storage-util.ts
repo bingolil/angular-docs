@@ -6,7 +6,11 @@ import { langKeyType, langValueType } from "../types";
 export class StorageUtil {
 
     /** 语言 */
-    static lang = 'lang';
+    static lang = 'Lang';
+    /** 令牌token */
+    static tokenKey = 'Access-Token';
+    /** 用户信息 */
+    static userInfo = 'User-Info';
 
     /**
      * @description 获取语言
@@ -29,6 +33,29 @@ export class StorageUtil {
      */
     static setLang(lang: langValueType): void {
         localStorage.setItem(this.lang, lang);
+    }
+
+    /**
+     * @description 写入令牌
+     * @param token 令牌
+     */
+    static setToken(token: string): void {
+        localStorage.setItem(this.tokenKey, token);
+    }
+
+    /**
+     * @description 获取令牌
+     * @returns 令牌
+     */
+    static getToken(): string {
+        return localStorage.getItem(this.tokenKey) as string;
+    }
+
+    /**
+     * @description 移除令牌
+     */
+    static removeToken(): void {
+        localStorage.removeItem(this.tokenKey);
     }
 
 }

@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { NzFormLayoutType } from 'ng-zorro-antd/form';
+import { validateArrLengthValidator } from 'src/app/directives/validate-arr-length.directive';
+import { validateEqualValidator } from 'src/app/directives/validate-equal.directive';
 import { ValidatorItem } from 'src/app/interfaces/dynamic-form';
+import { TypeJudgmentUtil } from 'src/app/utils';
 import { ObjectUtil } from 'src/app/utils/object-util';
-import { arrLengthValidator } from '../validator/arr-length';
 
 @Component({
   selector: 'docs-dynamic-form',
@@ -13,6 +15,15 @@ import { arrLengthValidator } from '../validator/arr-length';
 })
 export class DynamicFormComponent implements OnInit {
 
+  /**
+   * 表单对象formControls example：
+   * controls: BasicField<any>[] = [
+   *    new InpuTextField({ key: 'username', value: '', label: '姓名' }),
+   *    new InputPasswordField({ key: 'passowrd', value: '', label: '密码' }),
+   *    new InputNumberField({ key: 'age', value: undefined, label: '年龄' }),
+   *    new TextareaField({ key: 'desc', value: '', label: '描述' })
+   * ]
+   */
   /** 表单对象 BasicField<any>[] */
   @Input() formControls: any[] = [];
   /** 表单布局 'horizontal'水平模式 | 'vertical'堆叠模式 | 'inline'内联模式 */
@@ -25,6 +36,10 @@ export class DynamicFormComponent implements OnInit {
   @Input() controlSpan = 12;
   /** 是否展示清空按钮 */
   @Input() showClear = false;
+  /** 是否展示重置按钮 */
+  @Input() showReset = false;
+  /** 当前动态表单是否用于查询 */
+  @Input() isSearch = false;
 
   /** 发送表单的值 */
   @Output() emitFormValue: EventEmitter<any> = new EventEmitter();
@@ -45,13 +60,6 @@ export class DynamicFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // 表单初始对象（example value）：
-    // controls: BasicField<any>[] = [
-    //   new InpuTextField({ key: 'username', value: '', label: '姓名' }),
-    //   new InputPasswordField({ key: 'passowrd', value: '', label: '密码' }),
-    //   new InputNumberField({ key: 'age', value: undefined, label: '年龄' }),
-    //   new TextareaField({ key: 'desc', value: '', label: '描述' })
-    // ];
     console.log(this.formControls);
     this.createForm();
   }
@@ -77,6 +85,23 @@ export class DynamicFormComponent implements OnInit {
    * @returns 校验项
    */
   getValidatorFn(itemInfo: ValidatorItem): ValidatorFn {
+
+    if ( // 判断value值类型是否为number
+      (
+        (itemInfo.type === 'min') ||
+        (itemInfo.type === 'max') ||
+        (itemInfo.type === 'minlength') ||
+        (itemInfo.type === 'maxlength')
+      )
+      && !TypeJudgmentUtil.isNumber(itemInfo.value)
+    ) {
+      console.error(`${itemInfo.value} should be a number type`)
+    }
+
+    if (itemInfo.type === 'pattern' && !TypeJudgmentUtil.isRegExp(itemInfo.value)) {
+      console.error(`${itemInfo.value} should be a RegExp type`)
+    }
+
     switch (itemInfo.type) {
       case 'required':
         return Validators.required;
@@ -84,16 +109,18 @@ export class DynamicFormComponent implements OnInit {
         return Validators.min(itemInfo.value as number);
       case 'max':
         return Validators.max(itemInfo.value as number);
-      case 'minLength':
+      case 'minlength':
         return Validators.minLength(itemInfo.value as number);
-      case 'maxLength':
+      case 'maxlength':
         return Validators.maxLength(itemInfo.value as number);
-      case 'regexp':
-        return Validators.pattern(itemInfo.value as RegExp);
+      case 'pattern':
+        return Validators.pattern(itemInfo.value as RegExp)
       case 'email':
         return Validators.email;
-      case 'arrLength':
-        return arrLengthValidator(itemInfo.min || 0, itemInfo.max || Infinity);
+      case 'validateArrLength':
+        return validateArrLengthValidator(itemInfo.min || 0, itemInfo.max || Infinity);
+      case 'validateEqual':
+        return validateEqualValidator(itemInfo.equalAttrName || '', !!itemInfo.hasListener);
       default:
         return Validators.nullValidator;
     }
@@ -108,7 +135,7 @@ export class DynamicFormComponent implements OnInit {
       delete basicObj[item.key];
     });
 
-    const formValue = ObjectUtil.trimSpace(basicObj); // 清理字符串前后空格
+    const formValue = ObjectUtil.clearEmptyString(basicObj); // 清理字符串前后空格
 
     // setValue 严格遵循表单组的结构，并整体性替换控件的值
     // patchValue 以用对象中所定义的任何属性为表单模型进行替换
@@ -132,6 +159,23 @@ export class DynamicFormComponent implements OnInit {
   reset(event: MouseEvent): void {
     event.preventDefault(); // 防止调用onSubmit方法
     this.dynamicForm.reset(); // 设置各个控件标记为 untouched 和 pristine 都为true
+  }
+
+  /**
+   * @description 存在多个校验错误时，只展示一个错误
+   * @param validatorList 当前控件的校验信息
+   * @param control 当前控件
+   * @returns 校验结果 为''时校验通过
+   */
+  onlyShowOneValidateResult(validatorList: ValidatorItem[], control: AbstractControl): string {
+
+    if (control.errors) { // 存在错误
+      const validateInfo = validatorList.find(dd => {
+        return Object.keys(control.errors!).find(yy => yy === dd.type);
+      });
+      return validateInfo!.msg;
+    }
+    return '';
   }
 
 }

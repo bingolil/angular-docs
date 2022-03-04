@@ -1,4 +1,4 @@
-import { ObjectUtil } from ".";
+import { ObjectUtil } from "./object-util";
 import { ArrNode, TreeNode } from "../interfaces/utils/tree-node";
 
 /** 数组工具 */
