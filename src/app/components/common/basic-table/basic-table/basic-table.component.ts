@@ -31,9 +31,7 @@ interface SetFixParam {
  *    </tr>
  *  </tbody>
  * </docs-basic-table>
- * 
- * 
- * */
+ */
 @Component({
   selector: 'docs-basic-table',
   templateUrl: './basic-table.component.html',

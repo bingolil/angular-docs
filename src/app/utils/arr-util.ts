@@ -1,5 +1,5 @@
 import { ObjectUtil } from "./object-util";
-import { ArrNode, TreeNode } from "../interfaces/utils/tree-node";
+import { ArrNode, TreeNode } from "../interfaces/utils/tree-arr-node";
 
 /** 数组工具 */
 export class ArrUtil {

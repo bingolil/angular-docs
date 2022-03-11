@@ -21,12 +21,12 @@ export class LanguageService {
    */
   switchLanguage(lang: langValueType): void {
     StorageUtil.setLang(lang); // 将语言写入 local storage
-    this.translate.setDefaultLang(lang);
+    this.translate.setDefaultLang(lang); // 国际化和组件库切换语言
     this.i18nService.setLocale(LanguageService.getAntdLangInfo());
   }
 
   /**
-   * @description 静态方法 获取antd样式库语言信息
+   * @description 静态方法 获取antd组件库语言信息
    * @returns antd样式库语言信息
    */
   static getAntdLangInfo() {

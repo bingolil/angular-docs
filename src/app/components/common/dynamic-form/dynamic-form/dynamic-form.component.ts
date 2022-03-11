@@ -7,6 +7,21 @@ import { ValidatorItem } from 'src/app/interfaces/dynamic-form';
 import { TypeJudgmentUtil } from 'src/app/utils';
 import { ObjectUtil } from 'src/app/utils/object-util';
 
+/**
+ * 动态表单（响应式表单）
+ * example:
+ * ts:
+ *  controls: BasicField<any>[] = [
+ *    new InpuTextField({ key: 'username', value: '', label: '姓名' }),
+ *    new InputPasswordField({ key: 'passowrd', value: '', label: '密码' }),
+ *    new InputNumberField({ key: 'age', value: undefined, label: '年龄' }),
+ *    new TextareaField({ key: 'desc', value: '', label: '描述' })
+ *  ]
+ * 
+ * html:
+ * <docs-dynamic-form formControls="controls"></docs-dynamic-form>
+ * 
+ */
 @Component({
   selector: 'docs-dynamic-form',
   templateUrl: './dynamic-form.component.html',
@@ -15,15 +30,6 @@ import { ObjectUtil } from 'src/app/utils/object-util';
 })
 export class DynamicFormComponent implements OnInit {
 
-  /**
-   * 表单对象formControls example：
-   * controls: BasicField<any>[] = [
-   *    new InpuTextField({ key: 'username', value: '', label: '姓名' }),
-   *    new InputPasswordField({ key: 'passowrd', value: '', label: '密码' }),
-   *    new InputNumberField({ key: 'age', value: undefined, label: '年龄' }),
-   *    new TextareaField({ key: 'desc', value: '', label: '描述' })
-   * ]
-   */
   /** 表单对象 BasicField<any>[] */
   @Input() formControls: any[] = [];
   /** 表单布局 'horizontal'水平模式 | 'vertical'堆叠模式 | 'inline'内联模式 */

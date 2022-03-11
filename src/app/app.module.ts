@@ -12,11 +12,11 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { AppRoutingModule } from './app-routing.module';
+import { LoadingModule } from './components/common';
 import { AppComponent } from './app.component';
 
 import { StorageUtil } from './utils';
 import { LanguageService } from './services/base/language.service';
-import { LoadingModule } from './components/common/loading/loading.module';
 registerLocaleData(en);
 registerLocaleData(zh)
 

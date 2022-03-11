@@ -5,10 +5,10 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorF
 /**
  * example：
  *  <docs-checkbox-group 
- *    name="fav" 
+ *    name="hobby" 
  *    #validateArrLength="ngModel"
  *    [validateArrLength]="{min:1}"
- *    [(ngModel)]="fav" [options]="favList"
+ *    [(ngModel)]="hobby" [options]="hobbyList"
  *  >
  */
 @Directive({

@@ -14,7 +14,7 @@ export const CHECKBOX_GROUP_ACCESSOR: any = {
  * 
  * example：
  *  ts：
- *   hobby = ['swin','playGame'];
+ *   hobby = ['swin','game'];
  *   options = [{ label: '游泳', value: 'swin' }, { label: '游戏', value: 'game' }];
  *  html：
  *   <docs-checkbox-group [(ngModel)]="hobby" [options]="options"></docs-checkbox-group>
