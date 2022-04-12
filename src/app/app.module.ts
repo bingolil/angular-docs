@@ -18,7 +18,7 @@ import { AppComponent } from './app.component';
 import { StorageUtil } from './utils';
 import { LanguageService } from './services/base/language.service';
 registerLocaleData(en);
-registerLocaleData(zh)
+registerLocaleData(zh);
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
