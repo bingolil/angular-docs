@@ -12,7 +12,7 @@ import { ObjectUtil } from 'src/app/utils/object-util';
  * example:
  * ts:
  *  controls: BasicField<any>[] = [
- *    new InpuTextField({ key: 'username', value: '', label: '姓名' }),
+ *    new InputTextField({ key: 'username', value: '', label: '姓名' }),
  *    new InputPasswordField({ key: 'passowrd', value: '', label: '密码' }),
  *    new InputNumberField({ key: 'age', value: undefined, label: '年龄' }),
  *    new TextareaField({ key: 'desc', value: '', label: '描述' })

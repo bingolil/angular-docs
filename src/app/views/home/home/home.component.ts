@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DateUtil } from 'src/app/utils/date-util';
 
 @Component({
   selector: 'docs-home',

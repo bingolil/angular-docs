@@ -1,7 +1,7 @@
 import { BasicControl } from "src/app/interfaces/dynamic-form/basic-control";
 import { BasicField } from "./basic-field";
 
-export class InpuTextField extends BasicField<string>{
+export class InputTextField extends BasicField<string>{
 
     /** 控件类型：文本输入框 */
     type = 'inputText';
