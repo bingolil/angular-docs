@@ -3,8 +3,8 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from
 import { NzFormLayoutType } from 'ng-zorro-antd/form';
 import { validateArrLengthValidator } from 'src/app/directives/validate-arr-length.directive';
 import { validateEqualValidator } from 'src/app/directives/validate-equal.directive';
-import { ValidatorItem } from 'src/app/interfaces/dynamic-form';
-import { TypeJudgmentUtil } from 'src/app/utils';
+import { ValidatorItem } from 'src/app/interfaces/components/common/dynamic-form';
+import { TypeJudgeUtil } from 'src/app/utils';
 import { ObjectUtil } from 'src/app/utils/object-util';
 
 /**
@@ -99,12 +99,12 @@ export class DynamicFormComponent implements OnInit {
         (itemInfo.type === 'minlength') ||
         (itemInfo.type === 'maxlength')
       )
-      && !TypeJudgmentUtil.isNumber(itemInfo.value)
+      && !TypeJudgeUtil.isNumber(itemInfo.value)
     ) {
       console.error(`${itemInfo.value} should be a number type`)
     }
 
-    if (itemInfo.type === 'pattern' && !TypeJudgmentUtil.isRegExp(itemInfo.value)) {
+    if (itemInfo.type === 'pattern' && !TypeJudgeUtil.isRegExp(itemInfo.value)) {
       console.error(`${itemInfo.value} should be a RegExp type`)
     }
 

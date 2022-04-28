@@ -1,4 +1,4 @@
-import { TextareaControl } from "src/app/interfaces/dynamic-form";
+import { TextareaControl } from "src/app/interfaces/components/common/dynamic-form";
 import { BasicField } from "./basic-field";
 
 export class TextareaField extends BasicField<string>{

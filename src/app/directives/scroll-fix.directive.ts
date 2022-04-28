@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
-import { TypeJudgmentUtil } from '../utils';
+import { TypeJudgeUtil } from '../utils';
 
 // 浏览器滚动到一定距离，固定当前指令绑定的容器在页面上的位置
 /**
@@ -60,7 +60,7 @@ export class ScrollFixDirective implements AfterViewInit {
     this.clientTop = this.el.nativeElement.getBoundingClientRect().top;
     this.clientTop += document.documentElement.scrollTop;
 
-    if (TypeJudgmentUtil.isNumberAndNotIsNaN(this.scrollFix)) { // number且不为NaN
+    if (TypeJudgeUtil.isNumberAndNotIsNaN(this.scrollFix)) { // number且不为NaN
       this.fixTop = this.scrollFix as number;
     } else if (!Number.isNaN(Number(this.scrollFix))) { // string 可转 number
       this.fixTop = Number(this.scrollFix);

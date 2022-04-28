@@ -1,4 +1,4 @@
-import { TypeJudgmentUtil } from "./type-judgment-util";
+import { TypeJudgeUtil } from "./type-judge-util";
 
 /** 对象工具 */
 export class ObjectUtil {
@@ -13,7 +13,7 @@ export class ObjectUtil {
         if (Array.isArray(obj)) {
             resultObj = [];
             obj.forEach(item => resultObj.push(this.deepCopy(item)));
-        } else if (TypeJudgmentUtil.isObject(obj)) {
+        } else if (TypeJudgeUtil.isObject(obj)) {
             resultObj = {};
             for (let key in obj) {
                 resultObj[key] = this.deepCopy(obj[key]);
@@ -36,7 +36,7 @@ export class ObjectUtil {
         } else if (Array.isArray(obj)) { // 数组
             resultObj = [];
             obj.forEach(item => resultObj.push(this.clearEmptyString(item)));
-        } else if (TypeJudgmentUtil.isObject(obj)) { // 对象
+        } else if (TypeJudgeUtil.isObject(obj)) { // 对象
             resultObj = {};
             for (let key in obj) {
                 resultObj[key] = this.clearEmptyString(obj[key]);

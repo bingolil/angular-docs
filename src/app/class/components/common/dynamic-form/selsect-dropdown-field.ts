@@ -1,5 +1,5 @@
 import { NzSelectModeType } from "ng-zorro-antd/select";
-import { OptionItem, SelectDropdownControl } from "src/app/interfaces/dynamic-form";
+import { OptionItem, SelectDropdownControl } from "src/app/interfaces/components/common/dynamic-form";
 import { BasicField } from "./basic-field";
 
 export class SelectDropdownField extends BasicField<any>{

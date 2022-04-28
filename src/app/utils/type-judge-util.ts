@@ -1,5 +1,5 @@
 /** 类型判断工具 */
-export class TypeJudgmentUtil {
+export class TypeJudgeUtil {
 
   /**
    * @description 判断数据是否为Object类型
@@ -44,7 +44,7 @@ export class TypeJudgmentUtil {
    * @returns 判断结果
    */
   static isNumberAndNotIsNaN(obj: any): boolean {
-    return TypeJudgmentUtil.isNumber(obj) && !Number.isNaN(obj)
+    return TypeJudgeUtil.isNumber(obj) && !Number.isNaN(obj)
   }
 
   /**
@@ -107,7 +107,7 @@ export class TypeJudgmentUtil {
    * @returns 判断结果
    */
   static isNullOrUndefined(obj: any): boolean {
-    return TypeJudgmentUtil.isNull(obj) || TypeJudgmentUtil.isUndefined(obj);
+    return TypeJudgeUtil.isNull(obj) || TypeJudgeUtil.isUndefined(obj);
   }
 
 }

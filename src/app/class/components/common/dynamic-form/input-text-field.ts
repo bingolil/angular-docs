@@ -1,4 +1,4 @@
-import { BasicControl } from "src/app/interfaces/dynamic-form/basic-control";
+import { BasicControl } from "src/app/interfaces/components/common/dynamic-form/basic-control";
 import { BasicField } from "./basic-field";
 
 export class InputTextField extends BasicField<string>{

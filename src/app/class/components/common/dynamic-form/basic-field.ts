@@ -1,5 +1,5 @@
-import { BasicControl } from "src/app/interfaces/dynamic-form/basic-control";
-import { ValidatorItem } from "src/app/interfaces/dynamic-form/validator-item";
+import { BasicControl } from "src/app/interfaces/components/common/dynamic-form/basic-control";
+import { ValidatorItem } from "src/app/interfaces/components/common/dynamic-form/validator-item";
 
 export class BasicField<T> {
     /** 当前控件项的值 */

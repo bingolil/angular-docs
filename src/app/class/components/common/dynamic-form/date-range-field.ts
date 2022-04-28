@@ -1,5 +1,5 @@
 import { DisabledDateFn, DisabledTimeFn, NzDateMode } from "ng-zorro-antd/date-picker";
-import { DateRangeControl } from "src/app/interfaces/dynamic-form";
+import { DateRangeControl } from "src/app/interfaces/components/common/dynamic-form";
 import { BasicField } from "./basic-field";
 
 export class DateRangeField extends BasicField<Date[] | number[] | string[]> {
