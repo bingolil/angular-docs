@@ -1,5 +1,4 @@
-import { BasicControl } from "src/app/interfaces/components/common/dynamic-form/basic-control";
-import { ValidatorItem } from "src/app/interfaces/components/common/dynamic-form/validator-item";
+import { ValidatorItem } from "src/app/interfaces/common/dynamic-form/validator-item";
 
 export class BasicField<T> {
     /** 当前控件项的值 */
@@ -17,7 +16,7 @@ export class BasicField<T> {
     /** 校验列表 */
     validatorList: ValidatorItem[];
 
-    constructor(options: BasicControl<T>) {
+    constructor(options: BasicField<T>) {
         this.key = options.key || '';
         this.label = options.label || '';
         this.value = options.value === undefined ? null : options.value;

@@ -1,4 +1,4 @@
-import { OptionItem, RadioGroupControl } from "src/app/interfaces/components/common/dynamic-form";
+import { OptionItem } from "src/app/interfaces/common/dynamic-form";
 import { BasicField } from "./basic-field";
 
 export class RadioGroupField extends BasicField<any>{
@@ -9,7 +9,7 @@ export class RadioGroupField extends BasicField<any>{
     /** 单选列表组 */
     options: OptionItem[];
 
-    constructor(options: RadioGroupControl) {
+    constructor(options: RadioGroupField) {
         super(options);
         this.options = options.options || [];
     }

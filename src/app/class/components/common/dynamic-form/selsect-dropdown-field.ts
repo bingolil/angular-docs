@@ -1,5 +1,5 @@
 import { NzSelectModeType } from "ng-zorro-antd/select";
-import { OptionItem, SelectDropdownControl } from "src/app/interfaces/components/common/dynamic-form";
+import { OptionItem } from "src/app/interfaces/common/dynamic-form";
 import { BasicField } from "./basic-field";
 
 export class SelectDropdownField extends BasicField<any>{
@@ -14,7 +14,7 @@ export class SelectDropdownField extends BasicField<any>{
     /** select 是否支持清除 */
     allowClear: boolean;
 
-    constructor(options: SelectDropdownControl) {
+    constructor(options: SelectDropdownField) {
         super(options);
         this.options = options.options || [];
         this.mode = options.mode || 'default';

@@ -1,4 +1,3 @@
-import { TextareaControl } from "src/app/interfaces/components/common/dynamic-form";
 import { BasicField } from "./basic-field";
 
 export class TextareaField extends BasicField<string>{
@@ -9,7 +8,7 @@ export class TextareaField extends BasicField<string>{
     /** textarea 文本输入框行高配置 */
     rowsConfig: { minRows: number, maxRows: number };
 
-    constructor(options: TextareaControl) {
+    constructor(options: TextareaField) {
         super(options);
         this.rowsConfig = {
             minRows: options.rowsConfig?.minRows || 1,

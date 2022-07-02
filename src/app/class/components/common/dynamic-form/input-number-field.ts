@@ -1,4 +1,3 @@
-import { InputNumberControl } from "src/app/interfaces/components/common/dynamic-form";
 import { BasicField } from "./basic-field";
 
 export class InputNumberField extends BasicField<number>{
@@ -13,7 +12,7 @@ export class InputNumberField extends BasicField<number>{
     /** input-number 单位最小值 */
     step: number;
 
-    constructor(options: InputNumberControl) {
+    constructor(options: InputNumberField) {
         super(options);
         this.min = options.min || 0;
         this.max = options.max || Infinity;

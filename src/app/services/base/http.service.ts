@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { ResultCode } from 'src/app/constant';
-import { HttpOptions } from '../../interfaces/http/http-options';
+import { HttpOptions } from '../../interfaces/http/options';
 import { LoadingService } from './loading.service';
 import { RouterService } from './router.service';
 

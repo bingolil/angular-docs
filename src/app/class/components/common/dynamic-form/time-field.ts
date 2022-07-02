@@ -1,4 +1,3 @@
-import { TimeControl } from "src/app/interfaces/components/common/dynamic-form";
 import { BasicField } from "./basic-field";
 
 export class TimeField extends BasicField<Date | number | string> {
@@ -23,7 +22,7 @@ export class TimeField extends BasicField<Date | number | string> {
     /** 不可选秒列表 */
     disabledSeconds: ((hour: number, minute: number) => number[]) | undefined;
 
-    constructor(options: TimeControl) {
+    constructor(options: TimeField) {
         super(options);
         this.use12Hours = !!options.use12Hours;
         this.format = options.format || 'HH:mm:ss';

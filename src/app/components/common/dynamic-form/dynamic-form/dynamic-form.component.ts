@@ -3,7 +3,7 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from
 import { NzFormLayoutType } from 'ng-zorro-antd/form';
 import { validateArrLengthValidator } from 'src/app/directives/validate-arr-length.directive';
 import { validateEqualValidator } from 'src/app/directives/validate-equal.directive';
-import { ValidatorItem } from 'src/app/interfaces/components/common/dynamic-form';
+import { ValidatorItem } from 'src/app/interfaces/common/dynamic-form';
 import { TypeJudgeUtil } from 'src/app/utils';
 import { ObjectUtil } from 'src/app/utils/object-util';
 

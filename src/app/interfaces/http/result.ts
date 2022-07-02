@@ -1,5 +1,5 @@
 /** http请求返回接口 */
-export interface Result<T> {
+export interface HttpResult<T> {
   /** 状态码 */
   code: number;
   /** 信息 */
