@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { NzFormLayoutType } from 'ng-zorro-antd/form';
 import { validateArrLengthValidator } from 'src/app/directives/validate-arr-length.directive';
 import { validateEqualValidator } from 'src/app/directives/validate-equal.directive';
@@ -51,7 +51,7 @@ export class DynamicFormComponent implements OnInit {
   @Output() emitFormValue: EventEmitter<any> = new EventEmitter();
 
   /** 页面绑定的表单 */
-  dynamicForm!: FormGroup;
+  dynamicForm!: UntypedFormGroup;
   /** 页面绑定的必填星号Map */
   showStarMap: Map<string, boolean> = new Map();
   /** 表单水平模式时，左边栅格数 */
@@ -80,9 +80,9 @@ export class DynamicFormComponent implements OnInit {
       isShowStar = isShowStar && this.showStar;
       this.showStarMap.set(control.key, isShowStar);
       const validatorList = control.validatorList!.map((item: ValidatorItem) => this.getValidatorFn(item));
-      group[control.key] = new FormControl({ value: control.value, disabled: control.disabled }, validatorList)
+      group[control.key] = new UntypedFormControl({ value: control.value, disabled: control.disabled }, validatorList)
     })
-    this.dynamicForm = new FormGroup(group);
+    this.dynamicForm = new UntypedFormGroup(group);
   }
 
   /**
