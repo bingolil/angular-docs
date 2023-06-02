@@ -24,7 +24,9 @@ export const ResultCode = {
     /** 无权限，需进行身份验证 */
     NoPermission: 401,
     /** 未找到api地址 */
-    NotFound: 404
+    NotFound: 404,
+    /** 服务器错误 */
+    BadServer: 500
 } as const;
 
 /** 正则表达式 */

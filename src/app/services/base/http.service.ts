@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -45,11 +45,11 @@ export class HttpService {
     return this.sendRequest('put', options);
   }
 
-   /**
-   * @description 发送patch请求（打补丁）
-   * @param options 请求参数
-   * @returns 返回patch请求的结果
-   */
+  /**
+  * @description 发送patch请求（打补丁）
+  * @param options 请求参数
+  * @returns 返回patch请求的结果
+  */
   patch(options: HttpOptions): Observable<any> {
     return this.sendRequest('patch', options);
   }

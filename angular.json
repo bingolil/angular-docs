@@ -8,30 +8,6 @@
   "projects": {
     "angular-docs": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "less",
-          "skipTests": true
-        },
-        "@schematics/angular:class": {
-          "skipTests": true
-        },
-        "@schematics/angular:directive": {
-          "skipTests": true
-        },
-        "@schematics/angular:pipe": {
-          "skipTests": true
-        },
-        "@schematics/angular:guard": {
-          "skipTests": true
-        },
-        "@schematics/angular:service": {
-          "skipTests": true
-        },
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "docs",
@@ -111,19 +87,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "angular-docs:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "less",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.less"],
-            "scripts": []
           }
         }
       }

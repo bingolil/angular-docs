@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import { PreloadingStrategy, Route } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
+/**
+ * example(**-routing.module.ts):
+ * { path: 'path', component: Component, data: { preload: true } }
+ */
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,10 +22,8 @@ export class PreloadRouteService implements PreloadingStrategy {
     if (route.data && route.data.preload && route.path !== null) {
       // add the route path to the preloaded module array
       this.preloadedModules.push(route.path as string);
-
       // log the route path to the console
       console.log('Preloaded: ' + route.path);
-
       return load();
     } else {
       return of(null);

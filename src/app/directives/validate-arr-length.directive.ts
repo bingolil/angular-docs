@@ -24,7 +24,7 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorF
 export class ValidateArrLengthDirective implements Validator {
 
   /** 数组长度指令配置 值是object时，min为数组最小长度，max为数组最大长度 */
-  @Input() validateArrLength: string | { min?: number, max?: number } = '';
+  @Input() validateArrLength: string | { min?: number, max?: number; } = '';
 
   constructor() { }
 
@@ -64,7 +64,7 @@ export class ValidateArrLengthDirective implements Validator {
 export function validateArrLengthValidator(min: number, max: number): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     return getValidateResult(control, min, max);
-  }
+  };
 }
 
 /**
@@ -89,4 +89,4 @@ const getValidateResult = (control: AbstractControl, min: number, max: number)
   }
 
   return null;
-}
+};

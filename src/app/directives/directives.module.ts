@@ -4,13 +4,15 @@ import { ClickOutsideDirective } from './click-outside.directive';
 import { ScrollFixDirective } from './scroll-fix.directive';
 import { ValidateEqualDirective } from './validate-equal.directive';
 import { ValidateArrLengthDirective } from './validate-arr-length.directive';
+import { TrimDirective } from './trim.directive';
 
 @NgModule({
   declarations: [
     ClickOutsideDirective,
     ScrollFixDirective,
     ValidateArrLengthDirective,
-    ValidateEqualDirective
+    ValidateEqualDirective,
+    TrimDirective
   ],
   imports: [
     CommonModule
@@ -19,7 +21,8 @@ import { ValidateArrLengthDirective } from './validate-arr-length.directive';
     ClickOutsideDirective,
     ScrollFixDirective,
     ValidateEqualDirective,
-    ValidateArrLengthDirective
+    ValidateArrLengthDirective,
+    TrimDirective
   ]
 })
 export class DirectivesModule { }

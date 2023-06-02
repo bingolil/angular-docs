@@ -16,9 +16,8 @@ export interface ValidatorItem {
     /** 提示信息 */
     msg: string;
     /** 
-     * 值
-     *  min，max，minLength，maxLength为number；
-     *  regexp，validateForbiddenw为string或Regexp
+     * type为min，max，minLength，maxLength时，值为number类型；
+     * type为pattern时，值为Regexp类型
      */
     value?: number | RegExp;
     /** 数组长度最小值 */

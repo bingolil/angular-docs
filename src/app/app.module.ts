@@ -5,18 +5,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import zh from '@angular/common/locales/zh';
-
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { AppRoutingModule } from './app-routing.module';
-import { LoadingModule } from './components/common';
 import { AppComponent } from './app.component';
-
 import { StorageUtil } from './utils';
 import { LanguageService } from './services/base/language.service';
+import { LoadingModule } from './components';
 registerLocaleData(en);
 registerLocaleData(zh);
 

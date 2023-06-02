@@ -18,12 +18,12 @@ import { TypeJudgeUtil } from '../utils';
 })
 export class ScrollFixDirective implements AfterViewInit {
 
-  /**  fixTop为固定容器时，到顶部的距离，未设置时，取0（固定到最顶部），默认单位px */
+  /** 指令 当前容器固定时，到最顶部的距离 */
   @Input() scrollFix: string | number = '';
 
   /** 当前容器到窗口顶部距离（非固定时距离） */
   clientTop = 0;
-  /** 固定时，当前容器到窗口顶部的距离，默认为0 */
+  /**  fixTop为固定容器时，到顶部的距离，未设置时，取0（固定到最顶部），默认单位px */
   fixTop = 0;
 
   /**
