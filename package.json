@@ -51,7 +51,7 @@
       "<rootDir>/src/app/**/*.component.ts",
       "<rootDir>/src/app/**/*.util.ts",
       "<rootDir>/src/app/**/*.directive.ts",
-      "<rootDir>/src/app/**/*.ppie.ts",
+      "<rootDir>/src/app/**/*.pipe.ts",
       "<rootDir>/src/app/**/*.service.ts",
       "<rootDir>/src/app/**/*.interceptor.ts",
       "<rootDir>/src/app/**/*.guard.ts"
