@@ -6,7 +6,7 @@ describe('HighLightPipe', () => {
   let pipe: HighlightPipe;
   let domSanitizer: DomSanitizer;
   beforeEach(() => {
-    domSanitizer = TestBed.get(DomSanitizer);
+    domSanitizer = TestBed.inject(DomSanitizer);
     pipe = new HighlightPipe(domSanitizer);
   });
 

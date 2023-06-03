@@ -16,7 +16,7 @@ export class ArrUtil {
             if (!map.has(item[u_key])) {
                 map.set(item[u_key], item);
             }
-        })
+        });
         return [...map.values()];
     }
 
@@ -49,7 +49,7 @@ export class ArrUtil {
         const parentList = arr.filter(dd => { // 无父节点的list
             return dd.parentId === null
                 || dd.parentId === undefined
-                || !arr.find(kk => kk.id === dd.parentId)
+                || !arr.find(kk => kk.id === dd.parentId);
         });
         const childrenList = arr.filter(dd => !!arr.find(kk => { // 存在父节点的list
             return dd.parentId !== undefined && dd.parentId !== null && dd.parentId === kk.id;
@@ -77,7 +77,7 @@ export class ArrUtil {
                 }
             });
             return treeItem;
-        }
+        };
         const treeNodeList: TreeNode[] = [];
         parentList.forEach(parentItem => { // 循环写入父节点
             treeNodeList.push(getTreeNode(parentItem, childrenList, 1));

@@ -45,7 +45,7 @@ export class DateUtil {
    * @param timeInfo 时间信息
    * @returns 当前月所在年中的周列表
    */
-  static getMonthWeekList(timeInfo: string | number | Date): { week: number, text: string }[] {
+  static getMonthWeekList(timeInfo: string | number | Date): { week: number, text: string; }[] {
     const beignWeek = DateUtil.getCurrentWeek(DateUtil.getMonthStartTime(timeInfo));
     const endWeek = DateUtil.getCurrentWeek(DateUtil.getMonthEndTime(timeInfo));
     return Array.from({ length: endWeek - beignWeek }).map((_, i) => ({
@@ -59,10 +59,10 @@ export class DateUtil {
    * @param timeInfo 时间信息
    * @returns 当前月的日期列表
    */
-  static getMonthDateList(timeInfo: string | number | Date): { date: number, text: string }[] {
+  static getMonthDateList(timeInfo: string | number | Date): { date: number, text: string; }[] {
     // 当前月份最后一天日期
     const monthLastDay = new Date(DateUtil.getMonthEndTime(timeInfo)).getDate();
-    return Array.from({ length: monthLastDay }).map((_, i) => ({ date: i + 1, text: i + 1 + '号' }))
+    return Array.from({ length: monthLastDay }).map((_, i) => ({ date: i + 1, text: i + 1 + '号' }));
   }
 
   /**

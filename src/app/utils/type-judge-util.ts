@@ -44,7 +44,7 @@ export class TypeJudgeUtil {
    * @returns 判断结果
    */
   static isNumberAndNotIsNaN(obj: any): boolean {
-    return TypeJudgeUtil.isNumber(obj) && !Number.isNaN(obj)
+    return TypeJudgeUtil.isNumber(obj) && !Number.isNaN(obj);
   }
 
   /**

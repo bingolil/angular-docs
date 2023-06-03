@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 import { LoadingUiComponent } from './loading-ui/loading-ui.component';
 
 @NgModule({
-  declarations: [
-    LoadingUiComponent
-  ],
-  imports: [
-    CommonModule
-  ],
+  declarations: [LoadingUiComponent],
+  imports: [CommonModule],
   exports: [LoadingUiComponent]
 })
 export class LoadingModule { }
