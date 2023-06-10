@@ -1,4 +1,4 @@
-import { Directive, HostListener, Input } from '@angular/core';
+import { Directive, HostListener } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
 /**
@@ -11,9 +11,8 @@ import { NgControl } from '@angular/forms';
 export class TrimDirective {
 
   @HostListener('blur') onBlur() {
-    let value = this.formControl.value;
-    value = value ? value.trim() : "";
-    this.formControl.control?.setValue(value);
+    const value = this.formControl.value;
+    this.formControl.control?.setValue(value.trim());
   }
 
   constructor(private formControl: NgControl) { }

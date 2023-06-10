@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, Inpu
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NzCheckBoxOptionInterface } from 'ng-zorro-antd/checkbox';
 import { OptionItem } from 'src/app/interfaces/common/dynamic-form';
+import { ObjectUtil } from 'src/app/utils';
 
 export const CHECKBOX_GROUP_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -27,23 +28,18 @@ export const CHECKBOX_GROUP_ACCESSOR: any = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CHECKBOX_GROUP_ACCESSOR]
 })
-export class CheckboxGroupComponent implements OnInit, ControlValueAccessor {
+export class CheckboxGroupComponent implements ControlValueAccessor {
 
   /** 复选框组 */
-  @Input() options: OptionItem[] = [];
+  @Input() set options(items: OptionItem[]) {
+    this.dataSource = items.map(dd => ({ ...dd, checked: false, disabled: !!dd.disabled }));
+  };
   /** 页面绑定的勾选展示 */
   dataSource: NzCheckBoxOptionInterface[] = [];
   /** 值发生变化 */
   onChange = (_: any) => { };
 
   constructor(private cdr: ChangeDetectorRef) { }
-
-  ngOnInit(): void {
-    this.options.forEach(item => {
-      item.disabled = !!item.disabled;
-      this.dataSource.push(Object.assign(item, { checked: false, disabled: item.disabled }))
-    })
-  }
 
   /** 
    * @description 写入初始值（实现ControlValueAccessor接口的方法）
@@ -53,9 +49,9 @@ export class CheckboxGroupComponent implements OnInit, ControlValueAccessor {
     this.dataSource.forEach(item => item.checked = false); // 重置勾选状态
     if (Array.isArray(arr)) {
       arr.forEach(itemValue => {
-        const valueIndex = this.dataSource.findIndex(dd => dd.value === itemValue);
-        this.dataSource[valueIndex].checked = true;
-      })
+        const index = this.dataSource.findIndex(dd => ObjectUtil.isEqual(dd.value, itemValue));
+        this.dataSource[index].checked = true;
+      });
     }
     this.cdr.markForCheck();
   }
@@ -84,11 +80,10 @@ export class CheckboxGroupComponent implements OnInit, ControlValueAccessor {
 
   /**
    * @description 复选框单选勾选发生变更
-   * @param checkList 复选框勾选情况
+   * @param list 复选框勾选情况
    */
-  changeItem(checkList: NzCheckBoxOptionInterface[]) {
-    const arr: any[] = [];
-    checkList.filter(item => item.checked).forEach(item => arr.push(item.value));
+  changeItem(list: NzCheckBoxOptionInterface[]) {
+    const arr = list.filter(dd => dd.checked).map(dd => dd.value);
     this.onChange(arr);
   }
 
