@@ -6,23 +6,17 @@ import { ValidateEqualDirective } from './validate-equal.directive';
 import { ValidateArrLengthDirective } from './validate-arr-length.directive';
 import { TrimDirective } from './trim.directive';
 
+const directives = [
+  ClickOutsideDirective,
+  ScrollFixDirective,
+  ValidateArrLengthDirective,
+  ValidateEqualDirective,
+  TrimDirective
+];
+
 @NgModule({
-  declarations: [
-    ClickOutsideDirective,
-    ScrollFixDirective,
-    ValidateArrLengthDirective,
-    ValidateEqualDirective,
-    TrimDirective
-  ],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    ClickOutsideDirective,
-    ScrollFixDirective,
-    ValidateEqualDirective,
-    ValidateArrLengthDirective,
-    TrimDirective
-  ]
+  declarations: [...directives],
+  imports: [CommonModule],
+  exports: [...directives]
 })
 export class DirectivesModule { }

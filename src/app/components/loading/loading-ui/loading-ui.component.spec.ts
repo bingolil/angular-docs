@@ -1,5 +1,5 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { LoadingService } from 'src/app/services/base/loading.service';
+import { LoadingService } from 'src/app/services/base';
 import { LoadingUiComponent } from './loading-ui.component';
 
 describe('LoadingUiComponent Test', () => {

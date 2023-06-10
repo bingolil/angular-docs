@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HighlightPipe } from './highlight.pipe';
+import { ByteSizePipe } from './byte-size.pipe';
+
+const pipes = [HighlightPipe, ByteSizePipe];
 
 @NgModule({
-  declarations: [HighlightPipe],
+  declarations: [...pipes],
   imports: [CommonModule],
-  exports: [HighlightPipe]
+  exports: [...pipes],
 })
 export class PipesModule { }

@@ -14,6 +14,15 @@ export const PAGE = {
     pageSize: 10
 };
 
+/** 字节大小单位 */
+export const BYTE_UNITS = {
+    B: 0, b: 0, K: 1, k: 1, KB: 1, kb: 1, M: 2, m: 2, MB: 2, mb: 2,
+    G: 3, g: 3, GB: 3, gb: 3, T: 4, t: 4, TB: 4, tb: 4,
+    P: 5, p: 5, PB: 5, pb: 5, E: 6, e: 6, EB: 6, eb: 6,
+    Z: 7, z: 7, ZB: 7, zb: 7, Y: 8, y: 8, YB: 8, yb: 8
+} as const;
+
+
 /** 指定表格每页可以显示多少条列表 */
 export const PAGE_SIZE_OPTIONS = [10, 20, 50, 100];
 

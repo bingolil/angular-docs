@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PreloadRouteService } from './services/base/preload-route.service';
+import { PreloadRouteService } from './services/base';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

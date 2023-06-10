@@ -7,6 +7,8 @@
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
+    "test:uncommit": "jest -o",
+    "test:band": "jest --runInBand",
     "test:watch": "jest --watch"
   },
   "private": true,

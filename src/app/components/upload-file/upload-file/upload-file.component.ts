@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NzUploadFile, NzUploadListType } from 'ng-zorro-antd/upload';
 
 import { ResultCode } from 'src/app/constant';
-import { HttpService } from 'src/app/services/base/http.service';
+import { HttpService } from 'src/app/services/base';
 
 // 上传文件组件
 @Component({
