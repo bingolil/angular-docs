@@ -1,7 +1,7 @@
 import { AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
-import { TypeJudgeUtil } from '../utils';
 
 // 浏览器滚动到一定距离，固定当前指令绑定的容器在页面上的位置
+// 绑定的容器上不能存在margin-top的style
 /**
  * example1:
  *  <div style="height: 1000px;">
@@ -30,7 +30,7 @@ export class ScrollFixDirective implements AfterViewInit {
   * @description 监听document上的滚动事件
   * @param event 滚动事件
   */
-  @HostListener('document:scroll') public onScroll() {
+  @HostListener('window:scroll') public onScroll() {
 
     const scrollTop = document.documentElement.scrollTop; // 滚动条滚动的距离
 
@@ -50,7 +50,6 @@ export class ScrollFixDirective implements AfterViewInit {
   ngAfterViewInit(): void {  // postion fixed 需要设置当前容器宽高
     const clientWidth = this.el.nativeElement.getBoundingClientRect().width;
     this.renderer2.setStyle(this.el.nativeElement, 'width', clientWidth + 'px');
-
     /**
      * 容器到文档顶部距离 = clientRect().top + 网页卷去的距离
      * angular 单页面应用，当前页面存在滚动条
@@ -59,12 +58,8 @@ export class ScrollFixDirective implements AfterViewInit {
      */
     this.clientTop = this.el.nativeElement.getBoundingClientRect().top;
     this.clientTop += document.documentElement.scrollTop;
-
-    if (TypeJudgeUtil.isNumberAndNotIsNaN(this.scrollFix)) { // number且不为NaN
-      this.fixTop = this.scrollFix as number;
-    } else if (!Number.isNaN(Number(this.scrollFix))) { // string 可转 number
-      this.fixTop = Number(this.scrollFix);
-    }
+    const distance = parseInt(this.scrollFix as string);
+    if (!isNaN(distance)) this.fixTop = distance;
   }
 
 }

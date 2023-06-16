@@ -6,4 +6,6 @@ export interface OptionItem {
     value: any;
     /** 当前值是否不可用 */
     disabled?: boolean;
+    /** 其他属性 */
+    [key: string]: any;
 }

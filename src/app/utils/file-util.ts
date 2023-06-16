@@ -2,7 +2,7 @@
 export class FileUtil {
 
     /**
-     * @description 保存文件，不支持IE，即不采用 window.navigator.msSaveBlob保存文件
+     * @description 保存文件，Application不支持IE，即不采用 window.navigator.msSaveBlob保存文件
      * @param fileName 文件名称
      * @param blob 文件二进制流
      */

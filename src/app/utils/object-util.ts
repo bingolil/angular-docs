@@ -1,4 +1,4 @@
-import { TypeJudgeUtil } from "./type-judge-util";
+import { TypeJudgementUtil } from "./type-judgement-util";
 
 /** 对象工具 */
 export class ObjectUtil {
@@ -10,37 +10,21 @@ export class ObjectUtil {
      */
     static deepCopy<T>(obj: T): T {
         let resultObj: any;
-        if (Array.isArray(obj)) {
+        if (TypeJudgementUtil.isArray(obj)) {
             resultObj = [];
-            obj.forEach(item => resultObj.push(this.deepCopy(item)));
-        } else if (TypeJudgeUtil.isObject(obj)) {
+            (obj as unknown as Array<any>).forEach(item => resultObj.push(this.deepCopy(item)));
+        } else if (TypeJudgementUtil.isObject(obj)) {
             resultObj = {};
             for (let key in obj) {
                 resultObj[key] = this.deepCopy(obj[key]);
             }
-        } else {
-            resultObj = obj;
-        }
-        return resultObj;
-    }
-
-    /**
-     * @description 清理对象属性值为字符串的值前后空格
-     * @param obj 清理的对象
-     * @returns 清理后的新对象
-     */
-    static clearEmptyString<T>(obj: T): T {
-        let resultObj: any;
-        if (typeof (obj) === 'string') { // 字符串
-            resultObj = obj.trim();
-        } else if (Array.isArray(obj)) { // 数组
-            resultObj = [];
-            obj.forEach(item => resultObj.push(this.clearEmptyString(item)));
-        } else if (TypeJudgeUtil.isObject(obj)) { // 对象
-            resultObj = {};
-            for (let key in obj) {
-                resultObj[key] = this.clearEmptyString(obj[key]);
-            }
+        } else if (TypeJudgementUtil.isMap(obj)) {
+            resultObj = new Map();
+            (obj as unknown as Map<any, any>).forEach((value, key) => {
+                resultObj.set(key, this.deepCopy(value));
+            });
+        } else if (TypeJudgementUtil.isSet(obj)) {
+            resultObj = new Set([...(obj as unknown as Set<any>)]);
         } else {
             resultObj = obj;
         }
@@ -58,18 +42,29 @@ export class ObjectUtil {
         const type1 = Object.prototype.toString.call(obj1);
         const type2 = Object.prototype.toString.call(obj2);
         if (type1 !== type2) return false; // 数据类型不一致
-        if (TypeJudgeUtil.isObject(obj1)) {
+        if (TypeJudgementUtil.isObject(obj1)) {
             if (Object.keys(obj1).length !== Object.keys(obj2).length) return false; // 下标长度不一致
             for (let prop1 in obj1) {
                 if (!obj2.hasOwnProperty(prop1)) return false; // obj1中存在obj2没有的下标key
                 if (!this.isEqual(obj1[prop1], obj2[prop1])) return false;
             }
-        } else if (TypeJudgeUtil.isArray(obj1)) {
+        } else if (TypeJudgementUtil.isArray(obj1)) {
             if (obj1.length !== obj2.length) return false; // 数组长度不一致
             for (let i = 0; i < obj1.length; i++) {
                 if (!this.isEqual(obj1[i], obj2[i])) return false;
             }
-        } else if (obj1.toString() !== obj2.toString()) {
+        } else if (TypeJudgementUtil.isMap(obj1)) {
+            if (obj1.size !== obj2.size) return false; // map 长度不一致
+            for (let [key, value] of obj1) {
+                if (!obj2.has(key)) return false;
+                if (!this.isEqual(value, obj2.get(key))) return false;
+            }
+        } if (TypeJudgementUtil.isSet(obj1)) {
+            if (obj1.size !== obj2.size) return false; // set 长度不一致
+            for (let value of Array.from(obj1)) {
+                if (!obj2.has(value)) return false;
+            }
+        } if (obj1.toString() !== obj2.toString()) {
             return false; // Date Function RegExp
         };
         return true;

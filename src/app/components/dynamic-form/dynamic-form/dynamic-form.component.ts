@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { NzFormLayoutType } from 'ng-zorro-antd/form';
-import { validateArrLengthValidator } from 'src/app/directives/validate-arr-length.directive';
-import { validateEqualValidator } from 'src/app/directives/validate-equal.directive';
+import { verifyLengthValidator } from 'src/app/directives/verify-length.directive';
+import { verifyEqualValidator } from 'src/app/directives/verify-equal.directive';
 import { ValidatorItem } from 'src/app/interfaces/common/dynamic-form';
-import { TypeJudgeUtil } from 'src/app/utils';
-import { ObjectUtil } from 'src/app/utils/object-util';
+import { ObjectUtil, TypeJudgementUtil } from 'src/app/utils';
 
 /**
  * example 动态表单（响应式表单）:
@@ -98,12 +97,12 @@ export class DynamicFormComponent implements OnInit {
         (itemInfo.type === 'minlength') ||
         (itemInfo.type === 'maxlength')
       )
-      && !TypeJudgeUtil.isNumber(itemInfo.value)
+      && !TypeJudgementUtil.isNumber(itemInfo.value)
     ) {
       console.error(`${itemInfo.value} should be a number type`);
     }
 
-    if (itemInfo.type === 'pattern' && !TypeJudgeUtil.isRegExp(itemInfo.value)) {
+    if (itemInfo.type === 'pattern' && !TypeJudgementUtil.isRegExp(itemInfo.value)) {
       console.error(`${itemInfo.value} should be a RegExp type`);
     }
 
@@ -122,10 +121,10 @@ export class DynamicFormComponent implements OnInit {
         return Validators.pattern(itemInfo.value as RegExp);
       case 'email':
         return Validators.email;
-      case 'validateArrLength':
-        return validateArrLengthValidator(itemInfo.min || 0, itemInfo.max || Infinity);
-      case 'validateEqual':
-        return validateEqualValidator(itemInfo.equalAttrName || '', !!itemInfo.hasListener);
+      case 'verifyLength':
+        return verifyLengthValidator(itemInfo.min || 0, itemInfo.max || Infinity);
+      case 'verifyEqual':
+        return verifyEqualValidator(itemInfo.equalAttrName || '', !!itemInfo.listener);
       default:
         return Validators.nullValidator;
     }
@@ -140,11 +139,9 @@ export class DynamicFormComponent implements OnInit {
       delete basicObj[item.key];
     });
 
-    const formValue = ObjectUtil.clearEmptyString(basicObj); // 清理字符串前后空格
-
     // setValue 严格遵循表单组的结构，并整体性替换控件的值
     // patchValue 以用对象中所定义的任何属性为表单模型进行替换
-    this.dynamicForm.patchValue(formValue); // setValue() 重新赋值
+    this.dynamicForm.patchValue(basicObj); // setValue() 重新赋值
 
     console.log(this.dynamicForm.value);
     if (this.dynamicForm.invalid) { // 表单验证不通过

@@ -49,8 +49,8 @@ export class CheckboxGroupComponent implements ControlValueAccessor {
     this.dataSource.forEach(item => item.checked = false); // 重置勾选状态
     if (Array.isArray(arr)) {
       arr.forEach(itemValue => {
-        const index = this.dataSource.findIndex(dd => ObjectUtil.isEqual(dd.value, itemValue));
-        this.dataSource[index].checked = true;
+        const i = this.dataSource.findIndex(dd => ObjectUtil.isEqual(dd.value, itemValue));
+        this.dataSource[i].checked = true;
       });
     }
     this.cdr.markForCheck();

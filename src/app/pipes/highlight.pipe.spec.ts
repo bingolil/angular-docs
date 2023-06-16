@@ -2,7 +2,7 @@ import { TestBed } from "@angular/core/testing";
 import { DomSanitizer } from "@angular/platform-browser";
 import { HighlightPipe } from "./highlight.pipe";
 
-describe('HighLightPipe', () => {
+describe('HighLightPipe Test', () => {
   let pipe: HighlightPipe;
   let domSanitizer: DomSanitizer;
   beforeEach(() => {

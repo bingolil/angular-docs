@@ -1,14 +1,8 @@
 import { ByteSizePipe } from "./byte-size.pipe";
 
-describe('BytesizePipe', () => {
-  let pipe: ByteSizePipe;
-  beforeEach(() => {
-    pipe = new ByteSizePipe();
-  });
+describe('BytesizePipe Test', () => {
 
-  it('create an instance', () => {
-    expect(pipe).toBeTruthy();
-  });
+  const pipe = new ByteSizePipe();
 
   it('ByteSizePipe pipe transform', () => {
     expect(pipe.transform('1k', 'K')).toEqual('1K');

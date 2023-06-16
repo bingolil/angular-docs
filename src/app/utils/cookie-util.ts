@@ -16,12 +16,12 @@ export class CookieUtil {
    * @description 设置cookie
    * @param key cookie的唯一key
    * @param value cookie的value
-   * @param days 多少天过期，undefined（会话结束就过期）
+   * @param timesamp 多少毫秒后过期，undefined或0时（会话结束就过期）
    */
-  static setCookie(key: string, value: string, days?: number): void {
+  static setCookie(key: string, value: string, timesamp?: number): void {
     let cookieStr = encodeURIComponent(key) + '=' + encodeURIComponent(value);
-    if (days !== undefined && days !== 0) {
-      const invalidDate = new Date(days * 86400000 + new Date().getTime());
+    if (timesamp !== undefined && timesamp !== 0) {
+      const invalidDate = new Date(timesamp + new Date().getTime());
       cookieStr += ';expires=' + invalidDate.toUTCString();
     }
     document.cookie = cookieStr + ';path=/';

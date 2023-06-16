@@ -6,8 +6,8 @@ type ValidatorType = 'required' // 必填
     | 'maxlength' // 字符串最长长度
     | 'pattern' // 正则校验
     | 'email' // 邮件
-    | 'validateEqual' // 校验值相等，example：确认密码
-    | 'validateArrLength'; // 校验数组长度
+    | 'verifyEqual' // 校验值相等，example：确认密码
+    | 'verifyLength'; // 校验数组长度
 
 /** 校验信息接口 */
 export interface ValidatorItem {
@@ -24,8 +24,8 @@ export interface ValidatorItem {
     min?: number;
     /** 数组长度最大值 */
     max?: number;
-    /** 比较值时，比较的属性名称 */
+    /** 比较值时，被比较的属性名称 */
     equalAttrName?: string;
     /** 比较值时，是否监听当前控件，存在监听时，不展示错误信息 */
-    hasListener?: boolean;
+    listener?: boolean;
 }
