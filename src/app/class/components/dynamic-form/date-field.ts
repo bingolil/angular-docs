@@ -4,18 +4,18 @@ import { BasicField } from "./basic-field";
 export class DateField extends BasicField<Date | number | string>{
 
     /** 控件类型：日期 */
-    type = 'date';
+    type?= 'date';
 
     /** 日期或时间格式  */
-    format: string;
+    format?: string;
     /** 'year' | 'month' | 'week' | 'date' */
-    mode: NzDateMode;
+    mode?: NzDateMode;
     /** 是否展示今天按钮 */
-    showToday: boolean;
+    showToday?: boolean;
     /** 是否展示此刻按钮 */
-    showNow: boolean;
+    showNow?: boolean;
     /** 日期选择 是否展示时间 */
-    showTime: boolean;
+    showTime?: boolean;
     /** 
      * 不可选时间
      *  example：
@@ -25,14 +25,14 @@ export class DateField extends BasicField<Date | number | string>{
         nzDisabledSeconds: () => [55, 56]
       })
      */
-    disabledTimeFn: DisabledTimeFn | undefined;
+    disabledTimeFn?: DisabledTimeFn | undefined;
     /** 
      * 不可选日期
      * example：
      * disabledDateFn=(current:Date):boolean=>differenceInCalendarDays(current,new Date())>0
      * note: differenceInCalendarDays来自于 date-fns库
      */
-    disabledDateFn: DisabledDateFn | undefined;
+    disabledDateFn?: DisabledDateFn | undefined;
 
     constructor(options: DateField) {
         super(options);

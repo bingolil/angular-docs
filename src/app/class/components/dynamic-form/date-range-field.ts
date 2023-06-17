@@ -4,13 +4,13 @@ import { BasicField } from "./basic-field";
 export class DateRangeField extends BasicField<Date[] | number[] | string[]> {
 
     /** 控件类型：日期范围 */
-    type = 'dateRange';
+    type?= 'dateRange';
     /** 日期展示格式  */
-    format: string;
+    format?: string;
     /** 'year' | 'month' | 'week' | 'date' */
-    mode: NzDateMode;
+    mode?: NzDateMode;
     /** 日期选择 是否展示时间 */
-    showTime: boolean;
+    showTime?: boolean;
     /** 
      * 不可选时间
      *  example：
@@ -27,9 +27,9 @@ export class DateRangeField extends BasicField<Date[] | number[] | string[]> {
      * disabledDateFn=(current:Date):boolean=>differenceInCalendarDays(current,new Date())>0
      * note: differenceInCalendarDays来自于 date-fns库
      */
-    disabledDateFn: DisabledDateFn | undefined;
+    disabledDateFn?: DisabledDateFn | undefined;
     /** 日期范围选择 预设范围 */
-    ranges: { [key: string]: Date[] } | { [key: string]: () => Date[] };
+    ranges?: { [key: string]: Date[]; } | { [key: string]: () => Date[]; };
 
     constructor(options: DateRangeField) {
         super(options);

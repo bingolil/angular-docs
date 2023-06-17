@@ -78,11 +78,11 @@ describe('VerifyLengthDirective Test', () => {
     expect(agesControl.valid).toEqual(false);
     component.myForm.setValue({ ages: ['21'], hobby: [] });
     expect(agesControl.valid).toEqual(false);
-    expect(agesControl.errors).toEqual({ lengthSmall: true });
+    expect(agesControl.errors).toEqual({ verifyLength: true });
     component.myForm.setValue({ ages: ['21', '22'], hobby: [] });
     expect(agesControl.valid).toEqual(true);
     component.myForm.setValue({ ages: ['21', '22', '23', '25'], hobby: [] });
-    expect(agesControl.errors).toEqual({ lengthLarge: true });
+    expect(agesControl.errors).toEqual({ verifyLength: true });
     expect(agesControl.valid).toEqual(false);
   });
 
@@ -96,11 +96,11 @@ describe('VerifyLengthDirective Test', () => {
     expect(agesControl.valid).toEqual(false);
     component.userForm.patchValue({ ages: ['21'] });
     expect(agesControl.valid).toEqual(false);
-    expect(agesControl.errors).toEqual({ lengthSmall: true });
+    expect(agesControl.errors).toEqual({ verifyLength: true });
     component.userForm.patchValue({ ages: ['21', '22'] });
     expect(agesControl.valid).toEqual(true);
     component.userForm.patchValue({ ages: ['21', '22', '23', '25'] });
-    expect(agesControl.errors).toEqual({ lengthLarge: true });
+    expect(agesControl.errors).toEqual({ verifyLength: true });
     expect(agesControl.valid).toEqual(false);
   });
 

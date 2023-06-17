@@ -65,6 +65,6 @@ const getValidateResult = (control: AbstractControl, comparedAttrName: string, l
   // 当前控件存在监听，更新目标控件（dirty状态）的值并校验
   if (listener) comparedControl.updateValueAndValidity();
 
-  return !isEqual && !listener ? { notEqual: true } : null;
+  return !isEqual && !listener ? { verifyEqual: true } : null;
 
 };

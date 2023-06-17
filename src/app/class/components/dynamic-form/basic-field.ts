@@ -8,13 +8,13 @@ export class BasicField<T> {
     /** 表单控件项描述 */
     label: string;
     /** 表单控件是否可用 */
-    disabled: boolean;
+    disabled?: boolean;
     /** 表单控件是否只读 */
-    readonly: boolean;
+    readonly?: boolean;
     /** 表单控件占位内容 */
-    placeholder: string | string[];
+    placeholder?: string | string[];
     /** 校验列表 */
-    validatorList: ValidatorItem[];
+    validatorList?: ValidatorItem[];
 
     constructor(options: BasicField<T>) {
         this.key = options.key || '';

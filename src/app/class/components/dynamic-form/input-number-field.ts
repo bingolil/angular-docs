@@ -3,14 +3,14 @@ import { BasicField } from "./basic-field";
 export class InputNumberField extends BasicField<number>{
 
     /** 控件类型：密码输入框 */
-    type = 'inputNumber';
+    type?= 'inputNumber';
 
     /** input-number 最小值 */
-    min: number;
+    min?: number;
     /** input-number 最大值 */
-    max: number;
+    max?: number;
     /** input-number 单位最小值 */
-    step: number;
+    step?: number;
 
     constructor(options: InputNumberField) {
         super(options);

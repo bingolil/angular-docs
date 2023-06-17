@@ -31,7 +31,7 @@ export class VerifyLengthDirective implements Validator {
    * @return 校验结果
    */
   validate(control: AbstractControl): ValidationErrors | null {
-    let { min = 1, max = Infinity } = this.verifyLength as { min?: number, max?: number; };
+    let { min = 0, max = Infinity } = this.verifyLength as { min?: number, max?: number; };
     const inputMin = Number.parseInt(this.verifyLength as string);
     if (!isNaN(inputMin)) min = inputMin;
     return getValidateResult(control, min, max);
@@ -64,8 +64,7 @@ const getValidateResult = (control: AbstractControl, min: number, max: number)
   const controlValue = control.value === null ? [] : control.value;
 
   if (TypeJudgementUtil.isArray(controlValue)) { // control.value.length（length属性值）
-    if (controlValue.length < min) return { lengthSmall: true };
-    if (controlValue.length > max) return { lengthLarge: true };
+    if (controlValue.length < min || controlValue.length > max) return { verifyLength: true };
   }
 
   return null;

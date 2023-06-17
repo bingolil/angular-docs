@@ -77,7 +77,7 @@ describe('VerifyEqualDirective Test', () => {
     passwordEle.value = 'password';
     passwordEle.dispatchEvent(new Event('input'));
     expect(component.myForm.controls['confirmPassword']?.valid).toEqual(false);
-    expect(component.myForm.controls['confirmPassword']?.errors).toEqual({ notEqual: true });
+    expect(component.myForm.controls['confirmPassword']?.errors).toEqual({ verifyLength: true });
     expect(component.myForm.controls['password']?.valid).toEqual(true);
     const confirmPasswordEle = debugElement.query(By.css('#confirmPassword')).nativeElement;
     confirmPasswordEle.value = 'password';

@@ -4,10 +4,10 @@ import { BasicField } from "./basic-field";
 export class CheckboxGroupField extends BasicField<any>{
 
     /** 控件类型：单选框组 */
-    type = 'checkboxGroup';
+    type?= 'checkboxGroup';
 
     /** 多选列表组 */
-    options: OptionItem[];
+    options?: OptionItem[];
 
     constructor(options: CheckboxGroupField) {
         super(options);

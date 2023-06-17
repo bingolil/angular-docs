@@ -4,10 +4,10 @@ import { BasicField } from "./basic-field";
 export class RadioGroupField extends BasicField<any>{
 
     /** 控件类型：单选框组 */
-    type = 'radioGroup';
+    type?= 'radioGroup';
 
     /** 单选列表组 */
-    options: OptionItem[];
+    options?: OptionItem[];
 
     constructor(options: RadioGroupField) {
         super(options);

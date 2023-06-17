@@ -3,24 +3,24 @@ import { BasicField } from "./basic-field";
 export class TimeField extends BasicField<Date | number | string> {
 
     /** 控件类型：时间 */
-    type = 'time';
+    type?= 'time';
 
     /** 12小时制 */
-    use12Hours: boolean;
+    use12Hours?: boolean;
     /** 时间格式 */
-    format: string;
+    format?: string;
     /** 小时间隔 */
-    hourStep: number;
+    hourStep?: number;
     /** 分钟间隔 */
-    minuteStep: number;
+    minuteStep?: number;
     /** 秒间隔 */
-    secondStep: number;
+    secondStep?: number;
     /** 不可选小时列表 */
-    disabledHours: (() => number[]) | undefined;
+    disabledHours?: (() => number[]) | undefined;
     /** 不可选分钟列表 */
-    disabledMinutes: ((hour: number) => number[]) | undefined;
+    disabledMinutes?: ((hour: number) => number[]) | undefined;
     /** 不可选秒列表 */
-    disabledSeconds: ((hour: number, minute: number) => number[]) | undefined;
+    disabledSeconds?: ((hour: number, minute: number) => number[]) | undefined;
 
     constructor(options: TimeField) {
         super(options);
