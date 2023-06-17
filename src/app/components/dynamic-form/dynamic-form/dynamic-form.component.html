@@ -1,8 +1,8 @@
 <form (ngSubmit)="onSubmit()" nz-form [formGroup]="dynamicForm" [nzLayout]="layout">
     <ng-container *ngFor="let controlItem of formControls">
         <nz-form-item [ngSwitch]="controlItem.type" [ngClass]="{'inline-item':layout==='inline'}">
-            <nz-form-label [nzSpan]="leftNzSpan" [nzRequired]="showStarMap.get(controlItem.key)">
-                {{controlItem.label}}
+            <nz-form-label [nzSpan]="leftNzSpan" [nzRequired]="showStarObj[controlItem.key]">
+                {{controlItem.label | translate}}
             </nz-form-label>
             <nz-form-control [nzSpan]="rightNzSpan" [nzErrorTip]="controlErrorTpl">
                 <!-- 单行文本输入框 -->
@@ -75,17 +75,7 @@
                 </ng-container>
                 <!-- 表单控件项 校验错误模板 -->
                 <ng-template #controlErrorTpl let-control>
-
-                    <!-- 存在多个错误，展示多个错误 -->
-                    <!-- <ng-container *ngFor="let validateItem of controlItem.validatorList">
-                        <ng-container *ngIf="control.hasError(validateItem.type)">
-                            {{validateItem.msg}}</ng-container>
-                    </ng-container> -->
-
-                    <!-- 存在多个错误，只展示一个错误 -->
-                    <ng-container *ngIf="onlyShowOneValidateResult(controlItem.validatorList,control)">
-                        {{onlyShowOneValidateResult(controlItem.validatorList,control)}}
-                    </ng-container>
+                    {{controlErrorMsg(control,controlItem.validatorList) | translate}}
                 </ng-template>
             </nz-form-control>
         </nz-form-item>

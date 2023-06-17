@@ -1,10 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { NzFormLayoutType } from 'ng-zorro-antd/form';
 import { verifyLengthValidator } from 'src/app/directives/verify-length.directive';
 import { verifyEqualValidator } from 'src/app/directives/verify-equal.directive';
 import { ValidatorItem } from 'src/app/interfaces/common/dynamic-form';
-import { ObjectUtil, TypeJudgementUtil } from 'src/app/utils';
+import { TypeJudgementUtil } from 'src/app/utils';
+import { BasicField } from 'src/app/class/components/dynamic-form';
+import { verifyDateValidator } from 'src/app/directives/verify-date.directive';
+import { verifyTimeValidator } from 'src/app/directives/verify-time.directive';
 
 /**
  * example 动态表单（响应式表单）:
@@ -17,7 +20,7 @@ import { ObjectUtil, TypeJudgementUtil } from 'src/app/utils';
  *  ]
  * 
  * html:
- * <docs-dynamic-form formControls="controls"></docs-dynamic-form>
+ * <docs-dynamic-form [formControls]="controls"></docs-dynamic-form>
  * 
  */
 @Component({
@@ -26,7 +29,7 @@ import { ObjectUtil, TypeJudgementUtil } from 'src/app/utils';
   styleUrls: ['./dynamic-form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DynamicFormComponent implements OnInit {
+export class DynamicFormComponent implements OnChanges, OnInit {
 
   /** 表单对象 BasicField<any>[] */
   @Input() formControls: any[] = [];
@@ -44,14 +47,18 @@ export class DynamicFormComponent implements OnInit {
   @Input() showReset = false;
   /** 当前动态表单是否用于查询 */
   @Input() isSearch = false;
+  /** 校验信息multi展示 */
+  @Input() multiErrors = false;
 
   /** 发送表单的值 */
   @Output() emitFormValue: EventEmitter<any> = new EventEmitter();
+  /** 数据发生改变，通知父组件，父组件可能修改校验 */
+  @Output() valueChanges: EventEmitter<{ key: string, value: string; }> = new EventEmitter();
 
   /** 页面绑定的表单 */
   dynamicForm!: UntypedFormGroup;
-  /** 页面绑定的必填星号Map */
-  showStarMap: Map<string, boolean> = new Map();
+  /** 页面绑定的必填星号Obj */
+  showStarObj: { [key: string]: boolean; } = {};
   /** 表单水平模式时，左边栅格数 */
   get leftNzSpan(): number | null {
     return this.layout === 'horizontal' ? this.labelSpan : null;
@@ -63,8 +70,11 @@ export class DynamicFormComponent implements OnInit {
 
   constructor() { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.formControls && !changes.formControls.firstChange) this.createForm();
+  }
+
   ngOnInit(): void {
-    console.log(this.formControls);
     this.createForm();
   }
 
@@ -72,15 +82,19 @@ export class DynamicFormComponent implements OnInit {
    * @description 将控件写入表单
    */
   createForm(): void {
+    this.showStarObj = {};
     const group: any = {};
     this.formControls.forEach(control => {
-      let isShowStar = !!control.validatorList.find((dd: ValidatorItem) => dd.type === 'required');
-      isShowStar = isShowStar && this.showStar;
-      this.showStarMap.set(control.key, isShowStar);
-      const validatorList = control.validatorList!.map((item: ValidatorItem) => this.getValidatorFn(item));
-      group[control.key] = new UntypedFormControl({ value: control.value, disabled: control.disabled }, validatorList);
+      const { value, key, disabled, validatorList } = control as BasicField<any>;
+      const hasStar = this.showStar && new Set(validatorList?.map(d => (d.type))).has('required');
+      this.showStarObj[key] = hasStar;
+      const validators = validatorList?.map((d: ValidatorItem) => this.getValidatorFn(d));
+      group[control.key] = new UntypedFormControl({ value, disabled }, validators);
     });
     this.dynamicForm = new UntypedFormGroup(group);
+    this.formControls.forEach(({ key }) => {
+      this.dynamicForm.get(key)?.valueChanges.subscribe(value => this.valueChanges.emit({ key, value }));
+    });
   }
 
   /**
@@ -89,23 +103,6 @@ export class DynamicFormComponent implements OnInit {
    * @returns 校验项
    */
   getValidatorFn(itemInfo: ValidatorItem): ValidatorFn {
-
-    if ( // 判断value值类型是否为number
-      (
-        (itemInfo.type === 'min') ||
-        (itemInfo.type === 'max') ||
-        (itemInfo.type === 'minlength') ||
-        (itemInfo.type === 'maxlength')
-      )
-      && !TypeJudgementUtil.isNumber(itemInfo.value)
-    ) {
-      console.error(`${itemInfo.value} should be a number type`);
-    }
-
-    if (itemInfo.type === 'pattern' && !TypeJudgementUtil.isRegExp(itemInfo.value)) {
-      console.error(`${itemInfo.value} should be a RegExp type`);
-    }
-
     switch (itemInfo.type) {
       case 'required':
         return Validators.required;
@@ -124,7 +121,11 @@ export class DynamicFormComponent implements OnInit {
       case 'verifyLength':
         return verifyLengthValidator(itemInfo.min || 0, itemInfo.max || Infinity);
       case 'verifyEqual':
-        return verifyEqualValidator(itemInfo.equalAttrName || '', !!itemInfo.listener);
+        return verifyEqualValidator(itemInfo.comparedControl || '', !!itemInfo.listener);
+      case 'verifyDate':
+        return verifyDateValidator();
+      case 'verifyTime':
+        return verifyTimeValidator();
       default:
         return Validators.nullValidator;
     }
@@ -134,16 +135,6 @@ export class DynamicFormComponent implements OnInit {
    * @description 提交表单的值
    */
   onSubmit(): void {
-    const basicObj = ObjectUtil.deepCopy(this.dynamicForm.value);
-    this.formControls.filter(dd => dd.type === 'inputPassowrd').forEach(item => {
-      delete basicObj[item.key];
-    });
-
-    // setValue 严格遵循表单组的结构，并整体性替换控件的值
-    // patchValue 以用对象中所定义的任何属性为表单模型进行替换
-    this.dynamicForm.patchValue(basicObj); // setValue() 重新赋值
-
-    console.log(this.dynamicForm.value);
     if (this.dynamicForm.invalid) { // 表单验证不通过
       Object.values(this.dynamicForm.controls).forEach(controlItem => {
         controlItem.markAsDirty();
@@ -152,6 +143,17 @@ export class DynamicFormComponent implements OnInit {
       return;
     }
     this.emitFormValue.emit(this.dynamicForm.value);
+  }
+
+  /** 
+   * @description 设置控件校验
+   * @param key 控件的key
+   * @param fn 数字控件的校验方法
+   */
+  setControlValidator(key: string, fn: Function) {
+    fn(this.dynamicForm.get(key));
+    const hasStar = !!this.dynamicForm.get(key)?.hasValidator(Validators.required) && this.showStar;
+    this.showStarObj[key] = hasStar;
   }
 
   /** 
@@ -164,19 +166,14 @@ export class DynamicFormComponent implements OnInit {
   }
 
   /**
-   * @description 存在多个校验错误时，只展示一个错误
-   * @param validatorList 当前控件的校验信息
+   * @description 展示校验结果信息msg
    * @param control 当前控件
-   * @returns 校验结果 为''时校验通过
+   * @param validatorList 当前控件的校验信息
+   * @returns 校验结果信息
    */
-  onlyShowOneValidateResult(validatorList: ValidatorItem[], control: AbstractControl): string {
-    if (control.errors) { // 存在错误
-      const validateInfo = validatorList.find(dd => {
-        return Object.keys(control.errors!).find(yy => yy === dd.type);
-      });
-      return validateInfo!.msg;
-    }
-    return '';
+  controlErrorMsg(control: AbstractControl, validatorList: ValidatorItem[]): string {
+    const invalidItem = validatorList.find(d => control.hasError(d.type));
+    return '' || invalidItem?.msg as string;
   }
 
 }
