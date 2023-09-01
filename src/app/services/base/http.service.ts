@@ -8,15 +8,14 @@ import { LoadingService } from './loading.service';
 import { RouterService } from './router.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HttpService {
-
   constructor(
     private http: HttpClient,
     private routerService: RouterService,
     private loadingService: LoadingService
-  ) { }
+  ) {}
 
   /**
    * @description 发送get请求
@@ -46,10 +45,10 @@ export class HttpService {
   }
 
   /**
-  * @description 发送patch请求（打补丁）
-  * @param options 请求参数
-  * @returns 返回patch请求的结果
-  */
+   * @description 发送patch请求（打补丁）
+   * @param options 请求参数
+   * @returns 返回patch请求的结果
+   */
   patch(options: HttpOptions): Observable<any> {
     return this.sendRequest('patch', options);
   }
@@ -63,7 +62,7 @@ export class HttpService {
     return this.sendRequest('delete', options);
   }
 
-  /** 
+  /**
    * @description request请求发送之前
    * @param options 请求参数
    */
@@ -93,15 +92,18 @@ export class HttpService {
    * @param options 请求参数
    * @returns 返回一个正确的结果
    */
-  private catchHttpError(errRes: HttpErrorResponse, options: HttpOptions): Observable<any> {
-
+  private catchHttpError(
+    errRes: HttpErrorResponse,
+    options: HttpOptions
+  ): Observable<any> {
     this.loadingService.loading$.next(false); // 关闭http请求loading ui
 
     if (options.showErrorMsg) {
       // 展示错误信息
     }
 
-    if (errRes.status === ResultCode.NoPermission) { // 无权限
+    if (errRes.status === ResultCode.NoPermission) {
+      // 无权限
       // 登出操作
       this.routerService.goToLogin();
     }
@@ -130,5 +132,4 @@ export class HttpService {
   reponse(res: any): void {
     this.loadingService.loading$.next(false);
   }
-
 }

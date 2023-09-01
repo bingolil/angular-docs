@@ -6,14 +6,13 @@ import { LangValueType } from 'src/app/types';
 import { StorageUtil } from 'src/app/utils';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LanguageService {
-
   constructor(
     private translate: TranslateService,
     private i18nService: NzI18nService
-  ) { }
+  ) {}
 
   /**
    * @description 切换语言
@@ -38,5 +37,4 @@ export class LanguageService {
         return zh_CN;
     }
   }
-
 }

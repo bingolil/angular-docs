@@ -7,16 +7,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 
 @NgModule({
-  declarations: [
-    UploadFileComponent
-  ],
-  imports: [
-    CommonModule,
-    TranslateModule,
-    NzButtonModule,
-    NzUploadModule
-
-  ],
-  exports: [UploadFileComponent]
+  declarations: [UploadFileComponent],
+  imports: [CommonModule, TranslateModule, NzButtonModule, NzUploadModule],
+  exports: [UploadFileComponent],
 })
-export class UploadFileModule { }
+export class UploadFileModule {}

@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NzUploadFile, NzUploadListType } from 'ng-zorro-antd/upload';
 
@@ -10,14 +16,13 @@ import { HttpService } from 'src/app/services/base';
   selector: 'docs-upload-file',
   templateUrl: './upload-file.component.html',
   styleUrls: ['./upload-file.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UploadFileComponent implements OnInit {
-
   /** 上传组件，上传url地址 */
   @Input() url = 'demo-upload-api';
   /** 上传组件，上传参数 */
-  @Input() params: { key: string, value: any; }[] = [];
+  @Input() params: { key: string; value: any }[] = [];
   /** 是否开启Ctrl多选文件 */
   @Input() multiple = true;
   /** 上传文件的最大个数 */
@@ -38,9 +43,9 @@ export class UploadFileComponent implements OnInit {
     private httpService: HttpService,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef
-  ) { }
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   // 使用svg 在angular.json文件"assets"资源中添加一下对象
   // {
@@ -55,9 +60,11 @@ export class UploadFileComponent implements OnInit {
    * @returns 若返回 false 则停止上传
    */
   beforeUpload = (file: NzUploadFile): boolean => {
-    if (this.multiple) { // 上传多个文件
+    if (this.multiple) {
+      // 上传多个文件
       this.fileList = this.fileList.concat(file);
-    } else { // 上传单个文件
+    } else {
+      // 上传单个文件
       this.fileList = [file];
     }
     return false;
@@ -67,25 +74,30 @@ export class UploadFileComponent implements OnInit {
    * @description 手动上传文件
    */
   handleUpload(): void {
-    if (this.limit !== 0 && this.limit < this.fileList.length) { // 文件数量过大
-      const msg = this.translate.instant('pages.upload.limitErrMsg', { limit: this.limit });
+    if (this.limit !== 0 && this.limit < this.fileList.length) {
+      // 文件数量过大
+      const msg = this.translate.instant('pages.upload.limitErrMsg', {
+        limit: this.limit,
+      });
       console.log(msg);
       return;
     }
     const formData = new FormData();
+    console.log(this.fileList);
     this.fileList.forEach((file: any) => formData.append('files[]', file));
     if (Array.isArray(this.params)) {
-      this.params.forEach(item => formData.append(item.key, item.value));
+      this.params.forEach((item) => formData.append(item.key, item.value));
     }
     this.uploading = true;
 
-    this.httpService.post({ url: this.url, data: formData }).subscribe(res => {
-      this.uploading = false;
-      if (res.code === ResultCode.Ok) { // 上传成功，清理已选文件
-        this.fileList = [];
-      }
-      this.cdr.markForCheck();
-    });
+    this.httpService
+      .post({ url: this.url, data: formData })
+      .subscribe((res) => {
+        this.uploading = false;
+        if (res.code === ResultCode.Ok) {
+          this.fileList = []; // 上传成功，清理已选文件
+        }
+        this.cdr.markForCheck();
+      });
   }
-
 }

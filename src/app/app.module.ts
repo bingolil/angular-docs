@@ -23,9 +23,7 @@ export function createTranslateLoader(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -35,19 +33,19 @@ export function createTranslateLoader(http: HttpClient) {
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }), // 在其它模块中直接导入 NgxEchartsModule 即可使用
     NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
     LoadingModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     {
-      provide: NZ_I18N, /** 配置 ng-zorro-antd 国际化 **/
-      useFactory: () => LanguageService.getAntdLangInfo()
-    }
+      provide: NZ_I18N /** 配置 ng-zorro-antd 国际化 **/,
+      useFactory: () => LanguageService.getAntdLangInfo(),
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

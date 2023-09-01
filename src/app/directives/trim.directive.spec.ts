@@ -6,11 +6,11 @@ import { TrimDirective } from './trim.directive';
 
 @Component({
   selector: 'docs-test',
-  template: `<input id="myInput" type="text" trim [(ngModel)]="test">`
+  template: `<input id="myInput" type="text" trim [(ngModel)]="test" />`,
 })
 export class TestComponent {
   test?: string = undefined;
-  constructor(public ele: ElementRef) { }
+  constructor(public ele: ElementRef) {}
 }
 
 describe('TrimDirective Test', () => {
@@ -20,7 +20,7 @@ describe('TrimDirective Test', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule],
-      declarations: [TestComponent, TrimDirective]
+      declarations: [TestComponent, TrimDirective],
     }).compileComponents();
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
@@ -35,5 +35,4 @@ describe('TrimDirective Test', () => {
     inputEle.dispatchEvent(new Event('blur'));
     expect(component.test).toEqual('a');
   });
-
 });

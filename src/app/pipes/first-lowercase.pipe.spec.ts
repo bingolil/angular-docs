@@ -1,7 +1,6 @@
-import { FisrtLowerCasePipe } from "./first-lowerccase.pipe";
+import { FisrtLowerCasePipe } from './first-lowerccase.pipe';
 
 describe('FisrtLowerCasePipe Test', () => {
-
   const pipe = new FisrtLowerCasePipe();
 
   it('firstLowercase pipe transform', () => {
@@ -15,5 +14,4 @@ describe('FisrtLowerCasePipe Test', () => {
 
     expect(pipe.transform('A A b', true)).toEqual('a a b');
   });
-
 });

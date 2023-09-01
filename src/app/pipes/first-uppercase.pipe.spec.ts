@@ -1,7 +1,6 @@
-import { FisrtUpperCasePipe } from "./first-uppercase.pipe";
+import { FisrtUpperCasePipe } from './first-uppercase.pipe';
 
 describe('FisrtUpperCasePipe Test', () => {
-
   const pipe = new FisrtUpperCasePipe();
 
   it('firstUppercase pipe transform', () => {
@@ -16,5 +15,4 @@ describe('FisrtUpperCasePipe Test', () => {
 
     expect(pipe.transform('a bc', true)).toEqual('A Bc');
   });
-
 });

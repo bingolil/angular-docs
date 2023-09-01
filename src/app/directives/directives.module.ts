@@ -15,12 +15,12 @@ const directives = [
   VerifyEqualDirective,
   VerifyDateDirective,
   VerifyTimeDirective,
-  TrimDirective
+  TrimDirective,
 ];
 
 @NgModule({
   declarations: [...directives],
   imports: [CommonModule],
-  exports: [...directives]
+  exports: [...directives],
 })
-export class DirectivesModule { }
+export class DirectivesModule {}

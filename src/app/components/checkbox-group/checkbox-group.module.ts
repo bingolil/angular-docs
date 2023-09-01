@@ -7,11 +7,7 @@ import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.componen
 
 @NgModule({
   declarations: [CheckboxGroupComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    NzCheckboxModule
-  ],
-  exports: [CheckboxGroupComponent]
+  imports: [CommonModule, FormsModule, NzCheckboxModule],
+  exports: [CheckboxGroupComponent],
 })
-export class CheckboxGroupModule { }
+export class CheckboxGroupModule {}

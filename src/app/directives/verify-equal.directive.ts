@@ -1,5 +1,11 @@
 import { Attribute, Directive, forwardRef, Input } from '@angular/core';
-import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  NG_VALIDATORS,
+  ValidationErrors,
+  Validator,
+  ValidatorFn,
+} from '@angular/forms';
 
 // 自定义模板驱动表单校验指令（比较值example：确认密码）
 /**
@@ -15,25 +21,27 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorF
     {
       provide: NG_VALIDATORS,
       useExisting: forwardRef(() => VerifyEqualDirective),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class VerifyEqualDirective implements Validator {
-
   /** 比较控件在表单中的属性名称 */
   @Input() verifyEqual = '';
 
-  constructor(@Attribute('listener') private attrListener: string) { }
+  constructor(@Attribute('listener') private attrListener: string) {}
 
   /**
    * @description 实现 Validator 接口方法
    * @param control 当前控件
    */
   validate(control: AbstractControl): ValidationErrors | null {
-    return getValidateResult(control, this.verifyEqual, this.attrListener !== null);
+    return getValidateResult(
+      control,
+      this.verifyEqual,
+      this.attrListener !== null
+    );
   }
-
 }
 
 /**
@@ -42,7 +50,10 @@ export class VerifyEqualDirective implements Validator {
  * @param listener 是否监听当前控件
  * @returns 验证器函数
  */
-export function verifyEqualValidator(confirmAttrName: string, listener?: boolean): ValidatorFn {
+export function verifyEqualValidator(
+  confirmAttrName: string,
+  listener?: boolean
+): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     return getValidateResult(control, confirmAttrName, !!listener);
   };
@@ -55,9 +66,11 @@ export function verifyEqualValidator(confirmAttrName: string, listener?: boolean
  * @param listener 当前控件是在监听中
  * @returns 校验结果
  */
-const getValidateResult = (control: AbstractControl, comparedAttrName: string, listener: boolean)
-  : ValidationErrors | null => {
-
+const getValidateResult = (
+  control: AbstractControl,
+  comparedAttrName: string,
+  listener: boolean
+): ValidationErrors | null => {
   const comparedControl = control.root.get(comparedAttrName); // 被比较的目标控件
   if (!comparedControl) return null; // 被比较的控件不存在
 
@@ -66,5 +79,4 @@ const getValidateResult = (control: AbstractControl, comparedAttrName: string, l
   if (listener) comparedControl.updateValueAndValidity();
 
   return !isEqual && !listener ? { verifyEqual: true } : null;
-
 };

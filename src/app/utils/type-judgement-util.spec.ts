@@ -1,7 +1,6 @@
-import { TypeJudgementUtil } from "./type-judgement-util";
+import { TypeJudgementUtil } from './type-judgement-util';
 
 describe('TypeJudgementUtil Test', () => {
-
   it('isObject static function', () => {
     expect(TypeJudgementUtil.isObject({ a: 'b' })).toEqual(true);
     expect(TypeJudgementUtil.isObject([])).toEqual(false);
@@ -79,5 +78,4 @@ describe('TypeJudgementUtil Test', () => {
     expect(TypeJudgementUtil.isNullOrUndefined(undefined)).toEqual(true);
     expect(TypeJudgementUtil.isNullOrUndefined(null)).toEqual(true);
   });
-
 });

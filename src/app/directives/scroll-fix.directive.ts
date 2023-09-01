@@ -1,4 +1,11 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  Renderer2,
+} from '@angular/core';
 
 // 浏览器滚动到一定距离，固定当前指令绑定的容器在页面上的位置
 // 绑定的容器上不能存在margin-top的style
@@ -7,17 +14,16 @@ import { AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2 } 
  *  <div style="height: 1000px;">
  *    <div class="bg-success" style="height: 20px;" scrollFix></div>
  *  </div>
- * 
+ *
  * example2:
  *  <div style="height: 1000px;">
  *    <div class="bg-success" style="height: 20px;" scrollFix="20"></div>
  *  </div>
  */
 @Directive({
-  selector: '[scrollFix]'
+  selector: '[scrollFix]',
 })
 export class ScrollFixDirective implements AfterViewInit {
-
   /** 指令 当前容器固定时，到最顶部的距离 */
   @Input() scrollFix: string | number = '';
 
@@ -27,11 +33,10 @@ export class ScrollFixDirective implements AfterViewInit {
   fixTop = 0;
 
   /**
-  * @description 监听document上的滚动事件
-  * @param event 滚动事件
-  */
+   * @description 监听document上的滚动事件
+   * @param event 滚动事件
+   */
   @HostListener('window:scroll') public onScroll() {
-
     const scrollTop = document.documentElement.scrollTop; // 滚动条滚动的距离
 
     if (scrollTop > this.clientTop - this.fixTop) {
@@ -45,9 +50,10 @@ export class ScrollFixDirective implements AfterViewInit {
     }
   }
 
-  constructor(private el: ElementRef, private renderer2: Renderer2) { }
+  constructor(private el: ElementRef, private renderer2: Renderer2) {}
 
-  ngAfterViewInit(): void {  // postion fixed 需要设置当前容器宽高
+  ngAfterViewInit(): void {
+    // postion fixed 需要设置当前容器宽高
     const clientWidth = this.el.nativeElement.getBoundingClientRect().width;
     this.renderer2.setStyle(this.el.nativeElement, 'width', clientWidth + 'px');
     /**
@@ -61,5 +67,4 @@ export class ScrollFixDirective implements AfterViewInit {
     const distance = parseInt(this.scrollFix as string);
     if (!isNaN(distance)) this.fixTop = distance;
   }
-
 }

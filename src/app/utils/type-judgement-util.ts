@@ -1,6 +1,5 @@
 /** 类型判断工具 */
 export class TypeJudgementUtil {
-
   /**
    * @description 判断数据是否为Object类型
    * @param obj 判断的数据
@@ -29,10 +28,10 @@ export class TypeJudgementUtil {
   }
 
   /**
- * @description 判断数据是否为Map
- * @param obj 判断的数据
- * @returns 判断结果
- */
+   * @description 判断数据是否为Map
+   * @param obj 判断的数据
+   * @returns 判断结果
+   */
   static isMap(obj: any): boolean {
     return Object.prototype.toString.call(obj) === '[object Map]';
   }
@@ -126,5 +125,4 @@ export class TypeJudgementUtil {
   static isNullOrUndefined(obj: any): boolean {
     return TypeJudgementUtil.isNull(obj) || TypeJudgementUtil.isUndefined(obj);
   }
-
 }

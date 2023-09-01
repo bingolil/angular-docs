@@ -1,4 +1,16 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { PAGE, PAGE_SIZE_OPTIONS } from 'src/app/constant';
@@ -36,10 +48,9 @@ interface SetFixParam {
   selector: 'docs-basic-table',
   templateUrl: './basic-table.component.html',
   styleUrls: ['./basic-table.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasicTableComponent implements OnInit, AfterViewInit, OnDestroy {
-
   /** 表格数据总条数 */
   @Input() total = 0;
   /** 表格最大高度 固定头部 */
@@ -59,84 +70,95 @@ export class BasicTableComponent implements OnInit, AfterViewInit, OnDestroy {
   /** 是否展示总条数数据 */
   @Input() showTotal = true;
   /** 页码或页面尺寸发生变更，请求数据发生器 */
-  @Output() pageChange: EventEmitter<{ pageNum: number, pageSize: number }> = new EventEmitter();
+  @Output() pageChange: EventEmitter<{ pageNum: number; pageSize: number }> =
+    new EventEmitter();
   /** 表格视图 */
-  @ViewChild('dataTable', { static: true }) dataTable!: ElementRef<HTMLTableElement>;
+  @ViewChild('dataTable', { static: true })
+  tableView!: ElementRef<HTMLTableElement>;
 
   /** 监听滚动订阅 */
   scrollSub!: Subscription;
   /** 展示的分页数 */
   pageSizeOptions = PAGE_SIZE_OPTIONS;
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    if (this.maxHeight) { // 表格存在高度，固定表头
-      this.renderer.addClass(this.dataTable.nativeElement.querySelector('thead'), 'fix-head');
+    if (this.maxHeight) {
+      // 表格存在高度，固定表头
+      this.renderer.addClass(
+        this.tableView.nativeElement.querySelector('thead'),
+        'fix-head'
+      );
     }
 
-    if (this.leftFix > 0 || this.rightFix > 0) { // 表格左边或右边存在固定列
+    if (this.leftFix > 0 || this.rightFix > 0) {
+      // 表格左边或右边存在固定列
       this.resetTableStyle();
 
       const tableWrapDiv = document.getElementById('table-wrap')!;
-      this.scrollSub = fromEvent(tableWrapDiv, 'scroll').pipe(
-        debounceTime(20) // 降低dom操作
-      ).subscribe(() => {
-        this.resetTableShadow();
-      })
+      this.scrollSub = fromEvent(tableWrapDiv, 'scroll')
+        .pipe(
+          debounceTime(20) // 降低dom操作
+        )
+        .subscribe(() => {
+          this.resetTableShadow();
+        });
     }
   }
 
   ngOnDestroy(): void {
-    if (this.scrollSub) {
-      this.scrollSub.unsubscribe();
-    }
+    if (this.scrollSub) this.scrollSub.unsubscribe();
   }
 
   /**
-  * @description ng-content发生变化时调用
-  * @param event MutationRecord 变化的内容（ui中为$event）
-  */
+   * @description ng-content发生变化时调用
+   * @param event MutationRecord 变化的内容（ui中为$event）
+   */
   onContentChange() {
     console.log('ng-content changes....');
     this.resetTableStyle();
   }
 
-  /** 
+  /**
    * @description 重置表格样式，存在固定列时，添加样式类  sticky
    */
   resetTableStyle() {
-    const theadTrList = this.dataTable.nativeElement.querySelector('thead')?.children;
-    const tbodyTrList = this.dataTable.nativeElement.querySelector('tbody')?.children
+    const theadTrList =
+      this.tableView.nativeElement.querySelector('thead')?.children;
+    const tbodyTrList =
+      this.tableView.nativeElement.querySelector('tbody')?.children;
 
     let leftWidth = 0; // 左边固定td宽度
-    for (let i = 0; i < this.leftFix; i++) { // 添加左边固定样式类
+    for (let i = 0; i < this.leftFix; i++) {
+      // 添加左边固定样式类
       let param: SetFixParam = {
         fixWidth: leftWidth,
         isLeft: true,
         num: i,
-        trListDom: theadTrList
+        trListDom: theadTrList,
       };
       const thWidth = this.setFixStyle(param);
       param.trListDom = tbodyTrList;
       const tdWidth = this.setFixStyle(param);
-      leftWidth += (thWidth || tdWidth);
+      leftWidth += thWidth || tdWidth;
     }
 
     let rightWidth = 0; // 右边固定td宽度
-    for (let j = 0; j < this.rightFix; j++) { // 添加右边固定样式类
+    for (let j = 0; j < this.rightFix; j++) {
+      // 添加右边固定样式类
       let param: SetFixParam = {
         fixWidth: rightWidth,
         isLeft: false,
         num: j,
-        trListDom: theadTrList
+        trListDom: theadTrList,
       };
       const thWidth = this.setFixStyle(param);
       param.trListDom = tbodyTrList;
       const tdWidth = this.setFixStyle(param);
-      rightWidth += (thWidth || tdWidth);
+      rightWidth += thWidth || tdWidth;
     }
     this.resetTableShadow();
   }
@@ -151,8 +173,10 @@ export class BasicTableComponent implements OnInit, AfterViewInit, OnDestroy {
     if (param.trListDom) {
       for (let mm = 0; mm < param.trListDom.length; mm++) {
         let tdDom = param.trListDom.item(mm)?.children[param.num];
-        if (!param.isLeft) { // 右边固定时，重新选取tdDom
-          const tdCollection = param.trListDom.item(mm)?.children as HTMLCollection;
+        if (!param.isLeft) {
+          // 右边固定时，重新选取tdDom
+          const tdCollection = param.trListDom.item(mm)
+            ?.children as HTMLCollection;
           tdDom = tdCollection[tdCollection.length - param.num - 1]; // Element
         }
         if (!width) {
@@ -167,22 +191,27 @@ export class BasicTableComponent implements OnInit, AfterViewInit, OnDestroy {
     return width;
   }
 
-  /** 
+  /**
    * @description 重置固定列阴影
    */
   resetTableShadow() {
-    const theadTrList = this.dataTable.nativeElement.querySelector('thead')?.children;
-    const tbodyTrList = this.dataTable.nativeElement.querySelector('tbody')?.children;
+    const theadTrList =
+      this.tableView.nativeElement.querySelector('thead')?.children;
+    const tbodyTrList =
+      this.tableView.nativeElement.querySelector('tbody')?.children;
 
-    if (this.leftFix > 0) { // 处理左边阴影
+    if (this.leftFix > 0) {
+      // 处理左边阴影
       const isAddClass = document.getElementById('table-wrap')!.scrollLeft > 0;
       this.setBoxShadow(isAddClass, true, theadTrList);
       this.setBoxShadow(isAddClass, true, tbodyTrList);
     }
 
-    if (this.rightFix > 0) { // 处理右边阴影
+    if (this.rightFix > 0) {
+      // 处理右边阴影
       const tableWrapDiv = document.getElementById('table-wrap');
-      const tableWidth = this.dataTable.nativeElement.getBoundingClientRect().width;
+      const tableWidth =
+        this.tableView.nativeElement.getBoundingClientRect().width;
       const tableWrapWidth = tableWrapDiv!.getBoundingClientRect().width;
       const tableWrapScrollLeft = tableWrapDiv!.scrollLeft;
       const isAddClass = tableWrapScrollLeft + tableWrapWidth < tableWidth - 1;
@@ -197,15 +226,20 @@ export class BasicTableComponent implements OnInit, AfterViewInit, OnDestroy {
    * @param isLeft true为左边，false为右边
    * @param trListDom tr列表
    */
-  setBoxShadow(isAddClass: boolean, isLeft: boolean, trListDom?: HTMLCollection): void {
+  setBoxShadow(
+    isAddClass: boolean,
+    isLeft: boolean,
+    trListDom?: HTMLCollection
+  ): void {
     if (trListDom) {
       for (let kk = 0; kk < trListDom.length; kk++) {
         let tdDom = trListDom.item(kk)?.children[this.leftFix - 1];
-        if (!isLeft) { // 右边固定时，重新选取tdDom节点
+        if (!isLeft) {
+          // 右边固定时，重新选取tdDom节点
           const tdListDom = trListDom.item(kk)?.children as HTMLCollection;
           tdDom = tdListDom[tdListDom?.length - this.rightFix];
         }
-        const className = isLeft ? 'left-box-shadow' : 'right-box-shadow'
+        const className = isLeft ? 'left-box-shadow' : 'right-box-shadow';
         if (isAddClass) {
           this.renderer.addClass(tdDom, className);
         } else {
@@ -232,5 +266,4 @@ export class BasicTableComponent implements OnInit, AfterViewInit, OnDestroy {
     const params = { pageSize: pageSize, pageNum: this.pageNum };
     this.pageChange.emit(params);
   }
-
 }

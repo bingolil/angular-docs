@@ -1,9 +1,8 @@
-import { StorageUtil } from "./storage-util";
+import { StorageUtil } from './storage-util';
 
 describe('StorageUtil Test', () => {
-
   const localStorageMock = (function () {
-    let store: { [key: string]: string; } = {};
+    let store: { [key: string]: string } = {};
     return {
       getItem: function (key: string) {
         return store[key] || null;
@@ -16,7 +15,7 @@ describe('StorageUtil Test', () => {
       },
       clear: function () {
         store = {};
-      }
+      },
     };
   })();
 
@@ -56,5 +55,4 @@ describe('StorageUtil Test', () => {
     StorageUtil.removeToken();
     expect(StorageUtil.getToken()).toBeNull();
   });
-
 });

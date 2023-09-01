@@ -1,14 +1,19 @@
-import { Directive, ElementRef, EventEmitter, HostListener, Output } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Output,
+} from '@angular/core';
 
 // 监听当前指令绑定容器外的点击事件
 /**
  * example: <div (clickOutside)="doSomething()">example</div>
  */
 @Directive({
-  selector: '[clickOutside]'
+  selector: '[clickOutside]',
 })
 export class ClickOutsideDirective {
-
   /** 点击当前绑定当前容器的事件时，通知父组件 */
   @Output() clickOutside: EventEmitter<any> = new EventEmitter();
   /**
@@ -18,11 +23,11 @@ export class ClickOutsideDirective {
   @HostListener('document:click', ['$event.target'])
   public onClick(targetElement: HTMLElement) {
     const clickInside = this.elementRef.nativeElement.contains(targetElement);
-    if (!clickInside) { // 未点击当前容器，发送emit
+    if (!clickInside) {
+      // 未点击当前容器，发送emit
       this.clickOutside.emit();
     }
   }
 
-  constructor(private elementRef: ElementRef) { }
-
+  constructor(private elementRef: ElementRef) {}
 }

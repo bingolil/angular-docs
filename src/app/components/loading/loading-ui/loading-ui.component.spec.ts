@@ -1,4 +1,9 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { LoadingService } from 'src/app/services/base';
 import { LoadingUiComponent } from './loading-ui.component';
 
@@ -10,7 +15,7 @@ describe('LoadingUiComponent Test', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LoadingUiComponent],
-      providers: [LoadingService]
+      providers: [LoadingService],
     }).compileComponents();
     fixture = TestBed.createComponent(LoadingUiComponent);
     loadingService = TestBed.inject(LoadingService)!;

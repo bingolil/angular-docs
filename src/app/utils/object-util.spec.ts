@@ -1,7 +1,6 @@
-import { ObjectUtil } from "./object-util";
+import { ObjectUtil } from './object-util';
 
 describe('ObjectUtil Test', () => {
-
   const c = new Date('2020/10/10 12:00:00');
   const f = new Map().set('a', '1').set('b', 2);
   const g = new Set([1, 'b', null, undefined, false]);
@@ -48,5 +47,4 @@ describe('ObjectUtil Test', () => {
     const newc = new Date('2020/10/10 12:00:00');
     expect(ObjectUtil.isEqual(newc, c)).toEqual(true);
   });
-
 });

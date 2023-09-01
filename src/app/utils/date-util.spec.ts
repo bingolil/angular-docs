@@ -1,7 +1,6 @@
-import { DateUtil } from "./date-util";
+import { DateUtil } from './date-util';
 
 describe('DateUtil Test', () => {
-
   const octInfo = new Date('2020/10/15 12:00:00');
   const sepInfo = new Date('2020/09/15 12:00:00');
   const aprInfo = new Date('2020/04/15 12:00:00');
@@ -16,19 +15,19 @@ describe('DateUtil Test', () => {
   });
 
   it('getMonthDateList static function', () => {
-    let result = Array.from({ length: 31 }).map((_, i) => (i + 1));
+    let result = Array.from({ length: 31 }).map((_, i) => i + 1);
     expect(DateUtil.getMonthDateList(octInfo)).toEqual(result);
 
-    result = Array.from({ length: 30 }).map((_, i) => (i + 1));
+    result = Array.from({ length: 30 }).map((_, i) => i + 1);
     expect(DateUtil.getMonthDateList(sepInfo)).toEqual(result);
     expect(DateUtil.getMonthDateList(aprInfo)).toEqual(result);
   });
 
   it('getMonthDateList static function', () => {
-    let result = Array.from({ length: 31 }).map((_, i) => (i + 1));
+    let result = Array.from({ length: 31 }).map((_, i) => i + 1);
     expect(DateUtil.getMonthDateList(octInfo)).toEqual(result);
 
-    result = Array.from({ length: 30 }).map((_, i) => (i + 1));
+    result = Array.from({ length: 30 }).map((_, i) => i + 1);
     expect(DateUtil.getMonthDateList(sepInfo)).toEqual(result);
     expect(DateUtil.getMonthDateList(aprInfo)).toEqual(result);
   });
@@ -104,5 +103,4 @@ describe('DateUtil Test', () => {
     const aprResult = new Date('2020/07/01 00:00:00').getTime() - 1;
     expect(DateUtil.getQuarterEndTime(aprInfo)).toEqual(aprResult);
   });
-
 });

@@ -82,19 +82,12 @@
     </ng-container>
     <nz-form-item>
         <nz-form-control [nzOffset]="leftNzSpan">
-            <button (click)="reset($event)" *ngIf="showClear" nz-button nzType="primary">
-                {{'pages.btn.clear' | translate}}
-            </button>
             <button (click)="reset($event)" *ngIf="showReset" nz-button nzType="primary">
                 {{'pages.btn.reset' | translate}}
             </button>
             <button nz-button nzType="primary">
-                <ng-container *ngIf="!isSearch">
-                    {{'pages.btn.submit' | translate}}
-                </ng-container>
-                <ng-container *ngIf="isSearch">
-                    {{'pages.btn.search' | translate}}
-                </ng-container>
+                <ng-container *ngIf="!isSearch">{{'pages.btn.submit' | translate}}</ng-container>
+                <ng-container *ngIf="isSearch">{{'pages.btn.search' | translate}}</ng-container>
             </button>
         </nz-form-control>
     </nz-form-item>

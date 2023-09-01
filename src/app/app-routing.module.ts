@@ -4,13 +4,17 @@ import { PreloadRouteService } from './services/base';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule) },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./views/home/home.module').then((m) => m.HomeModule),
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadRouteService })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadRouteService }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

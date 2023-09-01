@@ -4,10 +4,9 @@ import { ScrollFixDirective } from './scroll-fix.directive';
 
 @Component({
   selector: 'docs-test',
-  template: `
-    <div style="height: 1000px;">
-      <div #firstDom style="height:20px;" scrollFix="20"></div>
-    </div>`
+  template: ` <div style="height: 1000px;">
+    <div #firstDom style="height:20px;" scrollFix="20"></div>
+  </div>`,
 })
 export class TestComponent {
   @ViewChild('firstDom') firstDom!: ElementRef;
@@ -32,7 +31,9 @@ describe('ScrollFixDirective Test', () => {
   it('fixed top distance', () => {
     const firstDomNode = component.firstDom.nativeElement;
     firstDomNode.getBoundingClientRect = jest.fn(() => ({
-      height: 20, top: 100, width: 200
+      height: 20,
+      top: 100,
+      width: 200,
     }));
     component.scrollFixOne.ngAfterViewInit();
     window.scrollTo(0, 80);
@@ -44,9 +45,7 @@ describe('ScrollFixDirective Test', () => {
     window.scrollTo(0, 90);
     window.dispatchEvent(new Event('scroll'));
     expect(component.firstDom.nativeElement.style.position).toEqual('fixed');
-    expect(component.firstDom.nativeElement.style.zIndex).toEqual("999");
+    expect(component.firstDom.nativeElement.style.zIndex).toEqual('999');
     expect(component.firstDom.nativeElement.style.top).toEqual('20px');
-
   });
-
 });

@@ -1,5 +1,11 @@
 import { Directive, forwardRef, Input } from '@angular/core';
-import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  NG_VALIDATORS,
+  ValidationErrors,
+  Validator,
+  ValidatorFn,
+} from '@angular/forms';
 
 @Directive({
   selector: '[verifyDate]',
@@ -7,12 +13,11 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorF
     {
       provide: NG_VALIDATORS,
       useExisting: forwardRef(() => VerifyDateDirective),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class VerifyDateDirective implements Validator {
-
   /** 日期校验配置 */
   @Input() verifyDate = '';
 
@@ -24,10 +29,9 @@ export class VerifyDateDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
     return null;
   }
-
 }
 
-/** 
+/**
  * @description 自定义响应式表单验证器函数（日期）
  * @returns 验证器函数
  */
@@ -42,8 +46,8 @@ export function verifyDateValidator(): ValidatorFn {
  * @param control 当前控件
  * @returns 校验结果
  */
-const getValidateResult = (control: AbstractControl,)
-  : ValidationErrors | null => {
-
+const getValidateResult = (
+  control: AbstractControl
+): ValidationErrors | null => {
   return null;
 };

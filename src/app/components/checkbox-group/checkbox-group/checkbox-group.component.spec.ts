@@ -9,11 +9,14 @@ describe('CheckboxGroupComponent Test', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, NzCheckboxModule],
-      declarations: [CheckboxGroupComponent]
+      declarations: [CheckboxGroupComponent],
     }).compileComponents();
     fixture = TestBed.createComponent(CheckboxGroupComponent);
     component = fixture.componentInstance;
-    component.options = [{ label: '游泳', value: 'swin' }, { label: '游戏', value: 'game' }];
+    component.options = [
+      { label: '游泳', value: 'swin' },
+      { label: '游戏', value: 'game' },
+    ];
   });
   it('should create the component', () => {
     expect(component).toBeTruthy();
@@ -34,7 +37,10 @@ describe('CheckboxGroupComponent Test', () => {
 
   it('setDisabledState function', () => {
     component.setDisabledState(true);
-    const result = component.dataSource.map(dd => ({ ...dd, ...{ disabled: true } }));
+    const result = component.dataSource.map((dd) => ({
+      ...dd,
+      ...{ disabled: true },
+    }));
     expect(component.dataSource).toEqual(result);
   });
 
@@ -52,5 +58,4 @@ describe('CheckboxGroupComponent Test', () => {
     component.changeItem(list);
     expect(mockFn).toHaveBeenCalledWith(['swin', 'game']);
   });
-
 });

@@ -1,6 +1,5 @@
 /** cookie工具 （读取，写入，删除） */
 export class CookieUtil {
-
   /**
     document.cookie = "key=value; expires=string; path=/dir;domain=xx.com; max-age=3600; secure=true";
 
@@ -44,9 +43,9 @@ export class CookieUtil {
    */
   static removeCookie(key: string): void {
     const currentValue = this.getCookie(key);
-    if (currentValue !== null) { // 当前cookie中存在对应key的value值
+    if (currentValue !== null) {
+      // 当前cookie中存在对应key的value值
       this.setCookie(key, currentValue, -1);
     }
   }
-
 }

@@ -15,17 +15,21 @@ interface ByteConfig {
  */
 
 @Pipe({
-  name: 'byteSize'
+  name: 'byteSize',
 })
 export class ByteSizePipe implements PipeTransform {
-
   transform(size: string | number, params: ByteUnitType | ByteConfig): string {
-    let { originalUnit = 'B', desiredUnit = params, decimal = 2 } = params as ByteConfig;
+    let {
+      originalUnit = 'B',
+      desiredUnit = params,
+      decimal = 2,
+    } = params as ByteConfig;
     const onlyNumber = /^\d{1,}$/.test(size.toString());
     const regex = new RegExp(`^\\d{1,}${Object.keys(BYTE_UNITS).join('|')}$`);
     const numberAndUnit = regex.test(size.toString());
 
-    if (!onlyNumber && !numberAndUnit) throw new Error(`Invalid byte data: ${size}`);
+    if (!onlyNumber && !numberAndUnit)
+      throw new Error(`Invalid byte data: ${size}`);
 
     let value = size.toString();
     if (numberAndUnit) {
@@ -33,7 +37,8 @@ export class ByteSizePipe implements PipeTransform {
       value = value.match(/\d{1,}/)![0];
     }
 
-    const gap = BYTE_UNITS[originalUnit] - BYTE_UNITS[desiredUnit as ByteUnitType];
+    const gap =
+      BYTE_UNITS[originalUnit] - BYTE_UNITS[desiredUnit as ByteUnitType];
     const arr = new Array(Math.abs(gap)).fill(1);
     const gapProduct = arr.reduce((prev: number) => prev * 1024, 1);
     let resultValue = (parseInt(value) / gapProduct).toFixed(decimal);
@@ -42,5 +47,4 @@ export class ByteSizePipe implements PipeTransform {
 
     return parseFloat(resultValue).toString() + desiredUnit;
   }
-
 }

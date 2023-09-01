@@ -1,6 +1,6 @@
-import { TestBed } from "@angular/core/testing";
-import { DomSanitizer } from "@angular/platform-browser";
-import { HighlightPipe } from "./highlight.pipe";
+import { TestBed } from '@angular/core/testing';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HighlightPipe } from './highlight.pipe';
 
 describe('HighLightPipe Test', () => {
   let pipe: HighlightPipe;
@@ -19,7 +19,10 @@ describe('HighLightPipe Test', () => {
     const expectVal1 = `<span style="color:#dc3545;">te</span>st value`;
     expect(result1).toEqual(domSanitizer.bypassSecurityTrustHtml(expectVal1));
 
-    const config2 = { value: 'te', style: { 'color': 'red', 'padding-left': '14px' } };
+    const config2 = {
+      value: 'te',
+      style: { color: 'red', 'padding-left': '14px' },
+    };
     const result2 = pipe.transform('testTEST', config2);
     const expectVal2 = `<span style="color:red;padding-left:14px;">te</span>st<span style="color:red;padding-left:14px;">TE</span>ST`;
     expect(result2).toEqual(domSanitizer.bypassSecurityTrustHtml(expectVal2));
@@ -27,5 +30,4 @@ describe('HighLightPipe Test', () => {
     const result3 = pipe.transform('test value', 'te');
     expect(result3).toEqual(domSanitizer.bypassSecurityTrustHtml(expectVal1));
   });
-
 });

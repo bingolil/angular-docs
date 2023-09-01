@@ -5,10 +5,12 @@ import { ClickOutsideDirective } from './click-outside.directive';
 
 @Component({
   selector: 'docs-child',
-  template: `<div id="testDiv"><div (clickOutside)="doSomething()">example</div></div>`
+  template: `<div id="testDiv">
+    <div (clickOutside)="doSomething()">example</div>
+  </div>`,
 })
 export class TestComponent {
-  doSomething() { }
+  doSomething() {}
 }
 
 describe('ClickOutsideDirective Test', () => {
@@ -17,7 +19,7 @@ describe('ClickOutsideDirective Test', () => {
   let debugElement: DebugElement;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent, ClickOutsideDirective]
+      declarations: [TestComponent, ClickOutsideDirective],
     }).compileComponents();
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;

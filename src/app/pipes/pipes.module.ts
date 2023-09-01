@@ -5,11 +5,16 @@ import { ByteSizePipe } from './byte-size.pipe';
 import { FisrtUpperCasePipe } from './first-uppercase.pipe';
 import { FisrtLowerCasePipe } from './first-lowerccase.pipe';
 
-const pipes = [HighlightPipe, ByteSizePipe, FisrtLowerCasePipe, FisrtUpperCasePipe];
+const pipes = [
+  HighlightPipe,
+  ByteSizePipe,
+  FisrtLowerCasePipe,
+  FisrtUpperCasePipe,
+];
 
 @NgModule({
   declarations: [...pipes],
   imports: [CommonModule],
   exports: [...pipes],
 })
-export class PipesModule { }
+export class PipesModule {}

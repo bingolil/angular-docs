@@ -1,4 +1,4 @@
-import { BYTE_UNITS, LANG } from "../constant";
+import { BYTE_UNITS, LANG } from '../constant';
 
 /** 定义valueof */
 type valueof<T> = T[keyof T];

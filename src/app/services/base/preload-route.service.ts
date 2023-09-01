@@ -8,14 +8,13 @@ import { Observable, of } from 'rxjs';
  */
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PreloadRouteService implements PreloadingStrategy {
-
   /** 预加载的路由 */
   preloadedModules: string[] = [];
 
-  constructor() { }
+  constructor() {}
 
   // 自定义预加载 实现preload方法
   preload(route: Route, load: () => Observable<any>): Observable<any> {

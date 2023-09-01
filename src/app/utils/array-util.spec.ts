@@ -1,7 +1,6 @@
-import { ArrayUtil } from "./array-util";
+import { ArrayUtil } from './array-util';
 
 describe('ArrayUtil Test', () => {
-
   const arr = [
     { id: 'id1' },
     { id: 'id3' },
@@ -21,19 +20,31 @@ describe('ArrayUtil Test', () => {
           hasChildren: true,
           parentId: 'id1',
           children: [
-            { id: 'id5', parentId: 'id2', level: 3, hasChildren: false, children: [] }
-          ]
-        }
-      ]
+            {
+              id: 'id5',
+              parentId: 'id2',
+              level: 3,
+              hasChildren: false,
+              children: [],
+            },
+          ],
+        },
+      ],
     },
     {
       id: 'id3',
       level: 1,
       hasChildren: true,
       children: [
-        { id: 'id4', parentId: 'id3', level: 2, hasChildren: false, children: [] }
-      ]
-    }
+        {
+          id: 'id4',
+          parentId: 'id3',
+          level: 2,
+          hasChildren: false,
+          children: [],
+        },
+      ],
+    },
   ];
 
   it('uniqueByProps static function', () => {
@@ -42,7 +53,10 @@ describe('ArrayUtil Test', () => {
       { a: '1', b: 1, c: true },
       { a: '2', b: 1, c: true },
     ];
-    const result = [{ a: '1', b: 0, c: false }, { a: '2', b: 1, c: true },];
+    const result = [
+      { a: '1', b: 0, c: false },
+      { a: '2', b: 1, c: true },
+    ];
     expect(ArrayUtil.uniqueByProps(arr, 'a')).toEqual(result);
   });
 

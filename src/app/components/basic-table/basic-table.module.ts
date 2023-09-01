@@ -7,12 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [BasicTableComponent],
-  imports: [
-    CommonModule,
-    NzPaginationModule,
-    TranslateModule,
-    ObserversModule
-  ],
-  exports: [BasicTableComponent]
+  imports: [CommonModule, NzPaginationModule, TranslateModule, ObserversModule],
+  exports: [BasicTableComponent],
 })
-export class BasicTableModule { }
+export class BasicTableModule {}

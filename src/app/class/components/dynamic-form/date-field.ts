@@ -18,7 +18,7 @@ export class DateField extends BasicField<Date | number | string>{
     showTime?: boolean;
     /** 
      * 不可选时间
-     *  example：
+     *  example:
      *  disabledTimeFn = () => ({
         nzDisabledHours: () => [22,23],
         nzDisabledMinutes: () =>[30,31],

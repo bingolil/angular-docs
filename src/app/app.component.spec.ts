@@ -4,15 +4,15 @@ import { AppComponent } from './app.component';
 import { LoadingModule } from './components';
 
 describe('AppComponent Test', () => {
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            imports: [RouterTestingModule, LoadingModule],
-            declarations: [AppComponent]
-        }).compileComponents();
-    });
-    it('should create the app', () => {
-        const fixture = TestBed.createComponent(AppComponent);
-        const app = fixture.componentInstance;
-        expect(app).toBeTruthy();
-    });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule, LoadingModule],
+      declarations: [AppComponent],
+    }).compileComponents();
+  });
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
 });
