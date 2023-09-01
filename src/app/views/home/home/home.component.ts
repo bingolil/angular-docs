@@ -6,9 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.less'],
 })
 export class HomeComponent implements OnInit {
-  value = `function hello() {
-	alert('Hello world!');
-}`;
   constructor() {}
 
   ngOnInit(): void {}
