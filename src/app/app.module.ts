@@ -7,13 +7,11 @@ import en from '@angular/common/locales/en';
 import zh from '@angular/common/locales/zh';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StorageUtil } from './utils';
-import { LanguageService } from './services/base/language.service';
 import { LoadingModule } from './components';
 registerLocaleData(en);
 registerLocaleData(zh);
@@ -39,12 +37,6 @@ export function createTranslateLoader(http: HttpClient) {
     NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
     LoadingModule,
     AppRoutingModule,
-  ],
-  providers: [
-    {
-      provide: NZ_I18N /** 配置 ng-zorro-antd 国际化 **/,
-      useFactory: () => LanguageService.getAntdLangInfo(),
-    },
   ],
   bootstrap: [AppComponent],
 })

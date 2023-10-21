@@ -73,8 +73,6 @@ describe('groupByToArray Test', () => {
     ];
     from(list)
       .pipe(groupByToArray(['title', 'sex']))
-      .subscribe((res) => {
-        expect(res).toEqual(result);
-      });
+      .subscribe((res) => expect(res).toEqual(result));
   });
 });

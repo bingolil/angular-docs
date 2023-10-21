@@ -6,7 +6,6 @@ import {
   FormsModule,
   NgForm,
   ReactiveFormsModule,
-  Validators,
 } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import {

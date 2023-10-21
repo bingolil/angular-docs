@@ -4,16 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home/home.component';
-import { CodeEditorModule, UploadFileModule } from 'src/app/components';
+import { CodeEditorModule } from 'src/app/components';
+import { DirectivesModule } from 'src/app/directives/directives.module';
 
 @NgModule({
   declarations: [HomeComponent],
   imports: [
+    HomeRoutingModule,
     CommonModule,
     FormsModule,
-    HomeRoutingModule,
+    DirectivesModule,
     CodeEditorModule,
-    UploadFileModule,
   ],
 })
 export class HomeModule {}
