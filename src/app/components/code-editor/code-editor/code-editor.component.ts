@@ -45,7 +45,7 @@ export class CodeEditorComponent
   onChange = (_: any) => {};
   onTouched = () => {};
 
-  constructor(private zone: NgZone) {}
+  constructor(private ngZone: NgZone) {}
 
   ngAfterViewInit(): void {
     if (loadPromise) {
@@ -113,7 +113,7 @@ export class CodeEditorComponent
 
     this._editor.onDidChangeModelContent((e: any) => {
       const value = this._editor.getValue();
-      this.zone.run(() => {
+      this.ngZone.run(() => {
         this.onChange(value);
         this._value = value;
       });
