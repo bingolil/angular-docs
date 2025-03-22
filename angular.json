@@ -35,6 +35,7 @@
               }
             ],
             "styles": [
+              "node_modules/normalize.css/normalize.css",
               "src/styles.less"
             ],
             "scripts": [],
