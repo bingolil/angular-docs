@@ -16,11 +16,8 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "es2020",
-    "types": ["lodash"],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "types": ["jest", "node"],
+    "lib": ["es2018", "dom"],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

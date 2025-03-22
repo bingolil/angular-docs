@@ -1,4 +1,4 @@
-import { ObjectUtil } from './object-util';
+import * as _ from 'lodash';
 import { ArrNode, TreeNode } from '../interfaces/utils/tree-arr-node';
 
 /** 数组工具 */
@@ -44,7 +44,7 @@ export class ArrayUtil {
       children: ArrNode[],
       level: number
     ): TreeNode => {
-      const copyNode = ObjectUtil.deepCopy(currentNode); // 深度复制当前节点
+      const copyNode = _.cloneDeep(currentNode); // 深度复制当前节点
       // 初始化当前节点对应的树节点
       const treeItem: TreeNode = {
         ...copyNode,
@@ -56,7 +56,7 @@ export class ArrayUtil {
         if (currentNode.id === childItem.parentId) {
           // 当前节点对应的子节点
           treeItem.hasChildren = true;
-          let temp = ObjectUtil.deepCopy(children); // 深度克隆子节点list
+          let temp = _.cloneDeep(children); // 深度克隆子节点list
           temp.splice(index, 1); // 移除当前子节点，减少递归时的循环
           treeItem.children?.push(getTreeNode(childItem, temp, level + 1));
         }
@@ -72,11 +72,11 @@ export class ArrayUtil {
    * @returns 数组
    */
   static treeToArray(tree: TreeNode[]): ArrNode[] {
-    let cloneTree = ObjectUtil.deepCopy(tree); // 深度复制树，不改变传入的值结构
+    let cloneTree = _.cloneDeep(tree); // 深度复制树，不改变传入的值结构
     const resultArr: ArrNode[] = [];
     while (cloneTree.length) {
       const firstItem = cloneTree.shift() as TreeNode; // 取出第一个树节点
-      const firstChildren = ObjectUtil.deepCopy(firstItem.children);
+      const firstChildren = _.cloneDeep(firstItem.children);
       delete firstItem.children; // 移除children属性
       delete firstItem.level; // 移除当前节点层级
       delete firstItem.hasChildren; // 移除当前节点是否存在子节点
