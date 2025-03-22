@@ -16,16 +16,17 @@ declare var monaco: any;
 let loadPromise: Promise<void>;
 
 @Component({
-  selector: 'docs-code-editor',
-  templateUrl: 'code-editor.component.html',
-  styleUrls: ['code-editor.component.less'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CodeEditorComponent),
-      multi: true,
-    },
-  ],
+    selector: 'docs-code-editor',
+    templateUrl: 'code-editor.component.html',
+    styleUrls: ['code-editor.component.less'],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => CodeEditorComponent),
+            multi: true,
+        },
+    ],
+    standalone: false
 })
 export class CodeEditorComponent
   implements ControlValueAccessor, AfterViewInit, OnDestroy

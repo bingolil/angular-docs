@@ -1,7 +1,8 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
-  selector: '[autoSzie]',
+    selector: '[autoSzie]',
+    standalone: false
 })
 export class AutoSizeDirective {
   @Input() autoSize = { minRows: 1, maxRows: Infinity };

@@ -21,7 +21,8 @@ import {
  *  </div>
  */
 @Directive({
-  selector: '[scrollFixed]',
+    selector: '[scrollFixed]',
+    standalone: false
 })
 export class ScrollFixedDirective implements AfterViewInit {
   /** 指令 当前容器固定时，到最顶部的距离 */

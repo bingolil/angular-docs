@@ -6,7 +6,8 @@ import { NgControl } from '@angular/forms';
  * <input type="text" trim [(ngModel)]="test">
  */
 @Directive({
-  selector: '[trim]',
+    selector: '[trim]',
+    standalone: false
 })
 export class TrimDirective {
   @HostListener('blur') onBlur() {
