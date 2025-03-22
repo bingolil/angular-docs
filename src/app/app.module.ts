@@ -12,6 +12,7 @@ import zh from '@angular/common/locales/zh';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxEchartsModule } from 'ngx-echarts';
+import * as echarts from 'echarts/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,7 +39,7 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient],
       },
     }), // 在其它模块中直接导入 NgxEchartsModule 即可使用
-    NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
+    NgxEchartsModule.forRoot({ echarts }),
     LoadingModule,
     AppRoutingModule,
   ],
