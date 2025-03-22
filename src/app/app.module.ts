@@ -9,10 +9,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import zh from '@angular/common/locales/zh';
+import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { NgxEchartsModule } from 'ngx-echarts';
 import * as echarts from 'echarts/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +33,7 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     TranslateModule.forRoot({
       defaultLanguage: StorageUtil.getLang(), // 初始默认语言
       loader: {
@@ -40,6 +43,7 @@ export function createTranslateLoader(http: HttpClient) {
       },
     }), // 在其它模块中直接导入 NgxEchartsModule 即可使用
     NgxEchartsModule.forRoot({ echarts }),
+    MonacoEditorModule.forRoot(),
     LoadingModule,
     AppRoutingModule,
   ],
