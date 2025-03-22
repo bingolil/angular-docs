@@ -1,4 +1,8 @@
 {
+  "demo": {
+    "lang": "中文",
+    "welcomeMessage": "你好！{{username}}"
+  },
   "pages": {
     "table": {
       "total": "共 {{total}} 条"

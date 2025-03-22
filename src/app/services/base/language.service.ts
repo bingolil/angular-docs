@@ -3,6 +3,18 @@ import { TranslateService } from '@ngx-translate/core';
 import { LangValueType } from 'src/app/types';
 import { StorageUtil } from 'src/app/utils';
 
+/**
+ * html
+ * example1: <p>{{ "demo.lang" | translate }}</p>
+ * example2: <p translate>demo.lang</p>
+ * example3: <p [translate]="'demo.lang'"></p>
+ * example4: <p>{{ "demo.welcomeMessage" | translate : { username: "用户名" } }}</p>
+ *
+ * ts
+ * example1: this.translate.get('demo.lang').subscribe((res) => {});
+ * example2:  this.translate.get('demo.welcomeMessage', { username: 'User' }).subscribe((res) => {});
+ */
+
 @Injectable({
   providedIn: 'root',
 })

@@ -1,4 +1,8 @@
 {
+  "demo": {
+    "lang": "en_US",
+    "welcomeMessage": "Hello! {{username}}"
+  },
   "pages": {
     "table": {
       "total": "Total {{total}} item"
