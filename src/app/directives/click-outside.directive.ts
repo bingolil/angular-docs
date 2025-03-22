@@ -11,8 +11,8 @@ import {
  * example: <div (clickOutside)="doSomething()">example</div>
  */
 @Directive({
-    selector: '[clickOutside]',
-    standalone: false
+  selector: '[clickOutside]',
+  standalone: false,
 })
 export class ClickOutsideDirective {
   /** 点击当前绑定当前容器的事件时，通知父组件 */

@@ -1,4 +1,8 @@
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import {
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,18 +24,24 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
-@NgModule({ declarations: [AppComponent],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        BrowserAnimationsModule,
-        TranslateModule.forRoot({
-            defaultLanguage: StorageUtil.getLang(), // 初始默认语言
-            loader: {
-                provide: TranslateLoader,
-                useFactory: createTranslateLoader,
-                deps: [HttpClient],
-            },
-        }), // 在其它模块中直接导入 NgxEchartsModule 即可使用
-        NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
-        LoadingModule,
-        AppRoutingModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    TranslateModule.forRoot({
+      defaultLanguage: StorageUtil.getLang(), // 初始默认语言
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }), // 在其它模块中直接导入 NgxEchartsModule 即可使用
+    NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
+    LoadingModule,
+    AppRoutingModule,
+  ],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
+})
 export class AppModule {}

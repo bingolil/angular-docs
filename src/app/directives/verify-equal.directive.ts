@@ -16,15 +16,15 @@ import {
  * </form>
  */
 @Directive({
-    selector: '[verifyEqual]',
-    providers: [
-        {
-            provide: NG_VALIDATORS,
-            useExisting: forwardRef(() => VerifyEqualDirective),
-            multi: true,
-        },
-    ],
-    standalone: false
+  selector: '[verifyEqual]',
+  providers: [
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef(() => VerifyEqualDirective),
+      multi: true,
+    },
+  ],
+  standalone: false,
 })
 export class VerifyEqualDirective implements Validator {
   /** 比较控件在表单中的属性名称 */

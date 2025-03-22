@@ -5,6 +5,6 @@ import { LoadingUiComponent } from './loading-ui/loading-ui.component';
 @NgModule({
   declarations: [LoadingUiComponent],
   imports: [CommonModule],
-  exports: [LoadingUiComponent]
+  exports: [LoadingUiComponent],
 })
-export class LoadingModule { }
+export class LoadingModule {}
