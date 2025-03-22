@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 /**
  * example1:
- * <p>{{'aaa' | firstUppercase}}</p>
+ * <p>{{'aaa' | firstUppercase}}</p> // Aaa
  */
 @Pipe({
   name: 'firstUppercase',
