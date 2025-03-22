@@ -16,7 +16,7 @@
           "builder": "@angular/build:application",
           "options": {
             "allowedCommonJsDependencies": [
-              "@techiediaries/ngx-qrcode"
+              "lodash"
             ],
             "outputPath": {
               "base": "dist/angular-docs"
