@@ -12,21 +12,21 @@ import {
 /**
  * example1:
  *  <div style="height: 1000px;">
- *    <div class="bg-success" style="height: 20px;" scrollFixed></div>
+ *    <div class="bg-success" style="height: 20px;" scrollFix></div>
  *  </div>
  *
  * example2:
  *  <div style="height: 1000px;">
- *    <div class="bg-success" style="height: 20px;" scrollFixed="20"></div>
+ *    <div class="bg-success" style="height: 20px;" scrollFix="20"></div>
  *  </div>
  */
 @Directive({
-  selector: '[scrollFixed]',
+  selector: '[scrollFix]',
   standalone: false,
 })
-export class ScrollFixedDirective implements AfterViewInit {
+export class ScrollFixDirective implements AfterViewInit {
   /** 指令 当前容器固定时，到最顶部的距离 */
-  @Input() scrollFixed: string | number = '';
+  @Input() scrollFix: string | number = '';
 
   /** 当前容器到窗口顶部距离（非固定时距离） */
   clientTop = 0;
@@ -65,7 +65,7 @@ export class ScrollFixedDirective implements AfterViewInit {
      */
     this.clientTop = this.el.nativeElement.getBoundingClientRect().top;
     this.clientTop += document.documentElement.scrollTop;
-    const distance = parseInt(this.scrollFixed as string);
+    const distance = parseInt(this.scrollFix as string);
     if (!isNaN(distance)) this.fixTop = distance;
   }
 }

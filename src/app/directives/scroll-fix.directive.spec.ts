@@ -1,6 +1,6 @@
 import { Component, DebugElement, ElementRef, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ScrollFixedDirective } from './scroll-fix.directive';
+import { ScrollFixDirective } from './scroll-fix.directive';
 
 @Component({
   selector: 'docs-test',
@@ -10,7 +10,7 @@ import { ScrollFixedDirective } from './scroll-fix.directive';
 })
 export class TestComponent {
   @ViewChild('firstDom') firstDom!: ElementRef;
-  @ViewChild(ScrollFixedDirective) scrollFixedOne!: ScrollFixedDirective;
+  @ViewChild(ScrollFixDirective) scrollFixedOne!: ScrollFixDirective;
 }
 
 describe('ScrollFixedDirective Test', () => {
@@ -20,7 +20,7 @@ describe('ScrollFixedDirective Test', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent, ScrollFixedDirective],
+      declarations: [TestComponent, ScrollFixDirective],
     }).compileComponents();
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;

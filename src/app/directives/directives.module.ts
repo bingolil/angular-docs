@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ClickOutsideDirective } from './click-outside.directive';
-import { ScrollFixedDirective } from './scroll-fix.directive';
+import { ScrollFixDirective } from './scroll-fix.directive';
 import { VerifyEqualDirective } from './verify-equal.directive';
 import { TrimDirective } from './trim.directive';
+import { FullscreenDirective } from './fullscreen.directive';
 
 const directives = [
   ClickOutsideDirective,
-  ScrollFixedDirective,
-  VerifyEqualDirective,
+  FullscreenDirective,
+  ScrollFixDirective,
   TrimDirective,
+  VerifyEqualDirective,
 ];
 
 @NgModule({
