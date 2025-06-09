@@ -4,12 +4,14 @@ import { HighlightPipe } from './highlight.pipe';
 import { ByteSizePipe } from './byte-size.pipe';
 import { FisrtUpperCasePipe } from './first-uppercase.pipe';
 import { FisrtLowerCasePipe } from './first-lowerccase.pipe';
+import { SafeHtmlPipe } from './safe-html.pipe';
 
 const pipes = [
   HighlightPipe,
   ByteSizePipe,
   FisrtLowerCasePipe,
   FisrtUpperCasePipe,
+  SafeHtmlPipe,
 ];
 
 @NgModule({
