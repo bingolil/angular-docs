@@ -5,19 +5,19 @@ import {
   tick,
 } from '@angular/core/testing';
 import { LoadingService } from 'src/app/services/base';
-import { LoadingUiComponent } from './loading-ui.component';
+import { LoadingUIComponent } from './loading-ui.component';
 
 describe('LoadingUiComponent Test', () => {
-  let fixture: ComponentFixture<LoadingUiComponent>;
-  let component: LoadingUiComponent;
+  let fixture: ComponentFixture<LoadingUIComponent>;
+  let component: LoadingUIComponent;
   let element: any;
   let loadingService: LoadingService;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LoadingUiComponent],
+      declarations: [LoadingUIComponent],
       providers: [LoadingService],
     }).compileComponents();
-    fixture = TestBed.createComponent(LoadingUiComponent);
+    fixture = TestBed.createComponent(LoadingUIComponent);
     loadingService = TestBed.inject(LoadingService)!;
     component = fixture.componentInstance;
     element = fixture.nativeElement;

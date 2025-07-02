@@ -8,6 +8,6 @@ import { DirectivesModule } from 'src/app/directives/directives.module';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [HomeRoutingModule, CommonModule, FormsModule, DirectivesModule],
+  imports: [HomeRoutingModule, CommonModule, FormsModule, DirectivesModule,],
 })
-export class HomeModule {}
+export class HomeModule { }

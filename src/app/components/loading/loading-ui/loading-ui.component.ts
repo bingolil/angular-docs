@@ -14,7 +14,7 @@ import { LoadingService } from 'src/app/services/base/loading.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false,
 })
-export class LoadingUiComponent implements OnInit {
+export class LoadingUIComponent implements OnInit {
   /** 是否展示loading动画 */
   loading = false;
 

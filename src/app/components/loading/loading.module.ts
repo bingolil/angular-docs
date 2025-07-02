@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoadingUiComponent } from './loading-ui/loading-ui.component';
+import { LoadingUIComponent } from './loading-ui/loading-ui.component';
 
 @NgModule({
-  declarations: [LoadingUiComponent],
+  declarations: [LoadingUIComponent],
   imports: [CommonModule],
-  exports: [LoadingUiComponent],
+  exports: [LoadingUIComponent],
 })
 export class LoadingModule {}
