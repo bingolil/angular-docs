@@ -3,7 +3,7 @@ import {
   Directive,
   ElementRef,
   HostListener,
-  Input,
+  input,
   Renderer2,
 } from '@angular/core';
 
@@ -26,7 +26,8 @@ import {
 })
 export class ScrollFixDirective implements AfterViewInit {
   /** 指令 当前容器固定时，到最顶部的距离 */
-  @Input() scrollFix: string | number = '';
+  // @Input() scrollFix: string | number = '';
+  scrollFix = input.required<string | number>();
 
   /** 当前容器到窗口顶部距离（非固定时距离） */
   clientTop = 0;
@@ -51,7 +52,7 @@ export class ScrollFixDirective implements AfterViewInit {
     }
   }
 
-  constructor(private el: ElementRef, private renderer2: Renderer2) {}
+  constructor(private el: ElementRef, private renderer2: Renderer2) { }
 
   ngAfterViewInit(): void {
     // postion fixed 需要设置当前容器宽高
@@ -65,7 +66,7 @@ export class ScrollFixDirective implements AfterViewInit {
      */
     this.clientTop = this.el.nativeElement.getBoundingClientRect().top;
     this.clientTop += document.documentElement.scrollTop;
-    const distance = parseInt(this.scrollFix as string);
+    const distance = parseInt(this.scrollFix() as string);
     if (!isNaN(distance)) this.fixTop = distance;
   }
 }

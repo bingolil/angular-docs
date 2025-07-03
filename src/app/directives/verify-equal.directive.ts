@@ -1,4 +1,4 @@
-import { Attribute, Directive, forwardRef, Input } from '@angular/core';
+import { Attribute, Directive, forwardRef, input } from '@angular/core';
 import {
   AbstractControl,
   NG_VALIDATORS,
@@ -28,9 +28,10 @@ import {
 })
 export class VerifyEqualDirective implements Validator {
   /** 比较控件在表单中的属性名称 */
-  @Input() verifyEqual = '';
+  // @Input() verifyEqual = '';
+  verifyEqual = input.required<string>();
 
-  constructor(@Attribute('listener') private attrListener: string) {}
+  constructor(@Attribute('listener') private attrListener: string) { }
 
   /**
    * @description 实现 Validator 接口方法
@@ -39,7 +40,7 @@ export class VerifyEqualDirective implements Validator {
   validate(control: AbstractControl): ValidationErrors | null {
     return getValidateResult(
       control,
-      this.verifyEqual,
+      this.verifyEqual(),
       this.attrListener !== null
     );
   }
