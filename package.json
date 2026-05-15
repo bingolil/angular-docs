@@ -24,7 +24,7 @@
     "@angular/router": "^19.2.3",
     "@ngx-translate/core": "^16.0.4",
     "@ngx-translate/http-loader": "^16.0.1",
-    "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
     "echarts": "^5.6.0",
     "lodash": "^4.17.21",
     "monaco-editor": "^0.40.0",

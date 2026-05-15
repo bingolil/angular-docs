@@ -1,4 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -117,9 +121,17 @@ export class HttpService {
    * @returns 反馈
    */
   private request(method: string, options: HttpOptions): Observable<any> {
+    const headers = new HttpHeaders();
+    options.headers?.forEach(({ key, value }) => headers.append(key, value));
+    // 添加token到请求头
+    // 这里假设有一个cookie-Token的header需要添加
+    // 实际应用中可能需要从cookie或localStorage中获取token
+    // 例如：const token = localStorage.getItem('token');
+    // headers.append('cookie-Token', 'your-token-value'); // 替换为实际的token值
+
     return this.http.request(method, options.url, {
       body: options.data,
-      // headers: new HttpHeaders().set('Authorization', 'cookie-Token'), // http请求添加token
+      headers,
       responseType: options.responseType || 'json',
       withCredentials: false,
     });

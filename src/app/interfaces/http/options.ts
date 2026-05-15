@@ -8,6 +8,8 @@ export interface HttpOptions {
   loading?: boolean;
   /** API报错是否展示报错信息 */
   showErrorMsg?: boolean;
+  /** API请求额外的headers */
+  headers?: { key: string; value: string }[];
   /** 响应类型 */
   responseType?: 'json' | 'arraybuffer' | 'blob';
 }
